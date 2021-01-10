@@ -1,6 +1,6 @@
 import { ResponsiveLine } from '@nivo/line';
 
-const data = [
+const data1 = [
   {
     id: 'japan',
     color: 'hsl(336, 70%, 50%)',
@@ -57,12 +57,15 @@ const data = [
   },
 ];
 
-export default function ChartComponent() {
+export default function ChartComponent(data) {
+  let yearData = [{ id: 'Year', color: 'hsl(336, 70%, 50%)', data: data.data }];
+  console.log('year data', yearData);
+
   return (
     <div className='chart'>
       HELLLOOOOO
       <ResponsiveLine
-        data={data}
+        data={yearData}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{
