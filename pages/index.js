@@ -10,7 +10,8 @@ export default function Home() {
     setData(payload);
   };
 
-  console.log(data);
+  // console.log(data);
+  // console.table(data.data);
 
   return (
     <div>
@@ -20,9 +21,7 @@ export default function Home() {
       </Head>
 
       <main className='container'>
-        {data.length == 0 && (
-          <Dropzone handleNewData={handleNewData} data={data} />
-        )}
+        <Dropzone handleNewData={handleNewData} data={data} />
         <ChartComponent data={data} />
       </main>
     </div>
