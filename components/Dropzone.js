@@ -1,7 +1,7 @@
 import { parse } from 'papaparse';
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import dayjs from 'dayjs';
+import { convertDateAndTotal } from '../util/tools';
 
 export default function Dropzone({ data, handleNewData }) {
   //when you drop file, dropzone gives you acceptedFiles object
@@ -14,20 +14,22 @@ export default function Dropzone({ data, handleNewData }) {
       //here is where you use papaparse, header true to make first row of csv file as property keys
       const csvData = parse(reader.result, { header: true });
 
-      const convertDate = csvData.data.map((x) => ({
-        ...x,
-        //converts to 1/20, should i convert to month only and add year?
-        'Order Date': dayjs(x['Order Date']).format('MM/YYYY'),
-        'Item Total': parseFloat(x['Item Total'].replace(/[^0-9.-]+/g, '')),
-      }));
+      //sum up each month per year
+      const sumPerMonth = convertDateAndTotal(csvData.data).reduce(
+        (acc, cur) => {
+          acc[cur['Order Date']] =
+            acc[cur['Order Date']] + cur['Item Total'] || cur['Item Total'];
+          return acc;
+        },
+        {}
+      );
 
-      const sumPerMonth = convertDate.reduce((acc, cur) => {
-        acc[cur['Order Date']] =
-          acc[cur['Order Date']] + cur['Item Total'] || cur['Item Total'];
-        return acc;
-      }, {});
+      //convert each summed up month to x y cordinates. month: value => x: month, y: value
+      const coordinates = Object.entries(sumPerMonth).map(([key, value]) => {
+        return { x: key, y: value };
+      });
 
-      handleNewData(sumPerMonth);
+      handleNewData(coordinates);
     };
 
     // read file contents

@@ -1,5 +1,12 @@
-//function to take in csv data array
-// 1. go through each object
-// 2. pluck out Date and how much spent on each object
-// 3. Put date into an object.
-// 4. if current element iterating through is in same month, add the total to that current total
+import dayjs from 'dayjs';
+
+//converts Order Date from 1/2/19 => 1/2019, Item Total from '$150.45' to 150.45
+export const convertDateAndTotal = (array) => {
+  let convertedDate = array.map((x) => ({
+    ...x,
+    'Order Date': dayjs(x['Order Date']).format('MM/YYYY'),
+    'Item Total': parseFloat(x['Item Total'].replace(/[^0-9.-]+/g, '')),
+  }));
+
+  return convertedDate;
+};
