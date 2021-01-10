@@ -55,60 +55,6 @@ const data = [
       },
     ],
   },
-  {
-    id: 'france',
-    color: 'hsl(48, 70%, 50%)',
-    data: [
-      {
-        x: 'plane',
-        y: 200,
-      },
-      {
-        x: 'helicopter',
-        y: 239,
-      },
-      {
-        x: 'boat',
-        y: 163,
-      },
-      {
-        x: 'train',
-        y: 282,
-      },
-      {
-        x: 'subway',
-        y: 107,
-      },
-      {
-        x: 'bus',
-        y: 59,
-      },
-      {
-        x: 'car',
-        y: 46,
-      },
-      {
-        x: 'moto',
-        y: 190,
-      },
-      {
-        x: 'bicycle',
-        y: 79,
-      },
-      {
-        x: 'horse',
-        y: 165,
-      },
-      {
-        x: 'skateboard',
-        y: 208,
-      },
-      {
-        x: 'others',
-        y: 179,
-      },
-    ],
-  },
 ];
 
 export default function ChartComponent() {
@@ -123,7 +69,7 @@ export default function ChartComponent() {
           type: 'linear',
           min: 'auto',
           max: 'auto',
-          stacked: true,
+          stacked: false,
           reverse: false,
         }}
         yFormat=' >-.2f'
@@ -187,7 +133,6 @@ export default function ChartComponent() {
             width: 60vw;
             background: white;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
           }
 
           .chart:hover {
