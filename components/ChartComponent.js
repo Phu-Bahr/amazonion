@@ -1,81 +1,40 @@
 import { ResponsiveLine } from '@nivo/line';
-
-const data1 = [
-  {
-    id: 'japan',
-    color: 'hsl(336, 70%, 50%)',
-    data: [
-      {
-        x: 'plane',
-        y: 269,
-      },
-      {
-        x: 'helicopter',
-        y: 211,
-      },
-      {
-        x: 'boat',
-        y: 81,
-      },
-      {
-        x: 'train',
-        y: 41,
-      },
-      {
-        x: 'subway',
-        y: 105,
-      },
-      {
-        x: 'bus',
-        y: 246,
-      },
-      {
-        x: 'car',
-        y: 244,
-      },
-      {
-        x: 'moto',
-        y: 149,
-      },
-      {
-        x: 'bicycle',
-        y: 176,
-      },
-      {
-        x: 'horse',
-        y: 216,
-      },
-      {
-        x: 'skateboard',
-        y: 105,
-      },
-      {
-        x: 'others',
-        y: 143,
-      },
-    ],
-  },
-];
+import { useState } from 'react';
 
 export default function ChartComponent(data) {
-  let yearData = [{ id: 'Year', color: 'hsl(336, 70%, 50%)', data: data.data }];
+  const [year, setYear] = useState('2009');
+
+  const filteredYear = (array, year) => {
+    let pickedYear = array.filter((yr) => yr.x.split('/').splice(1, 1) == year);
+    return pickedYear;
+  };
+
+  const yearData = [
+    {
+      id: 'Year',
+      color: 'hsl(336, 70%, 50%)',
+      data: filteredYear(data.data, year),
+    },
+  ];
+
   console.log('year data', yearData);
+  // console.log('filt year', filteredYear(data.data, '2008'));
 
   return (
     <div className='chart'>
-      HELLLOOOOO
       <ResponsiveLine
         data={yearData}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{
           type: 'linear',
-          min: 'auto',
-          max: 'auto',
+          min: '0',
+          max: '600',
           stacked: false,
           reverse: false,
         }}
         yFormat=' >-.2f'
+        curve='natural'
         axisTop={null}
         axisRight={null}
         axisBottom={{
@@ -83,7 +42,7 @@ export default function ChartComponent(data) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: 'transportation',
+          legend: 'Month',
           legendOffset: 36,
           legendPosition: 'middle',
         }}
@@ -92,7 +51,7 @@ export default function ChartComponent(data) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: 'count',
+          legend: 'Total Spent',
           legendOffset: -40,
           legendPosition: 'middle',
         }}
@@ -129,6 +88,7 @@ export default function ChartComponent(data) {
           },
         ]}
       />
+      <div>Year buttons here</div>
       <style jsx>
         {`
           .chart {
