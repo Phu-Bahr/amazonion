@@ -2,13 +2,15 @@ import { ResponsiveLine } from '@nivo/line';
 import { useState } from 'react';
 
 export default function ChartComponent(data) {
-  const [year, setYear] = useState('2009');
+  const [year, setYear] = useState('');
 
+  //filters the months by year
   const filteredYear = (array, year) => {
     let pickedYear = array.filter((yr) => yr.x.split('/').splice(1, 1) == year);
     return pickedYear;
   };
 
+  //data for the chart
   const yearData = [
     {
       id: 'Year',
@@ -17,11 +19,30 @@ export default function ChartComponent(data) {
     },
   ];
 
-  console.log('year data', yearData);
-  // console.log('filt year', filteredYear(data.data, '2008'));
+  // get list of years
+  const yearList = data.data.map((element) => {
+    return element.x.split('/').slice(1).join();
+  });
+
+  // remove dupes from list yearList
+  const reducedYearList = [...new Set(yearList)];
+
+  let displayYearList = reducedYearList.map((yr) => (
+    <button
+      className='chart-year-buttons__button'
+      onClick={() => handleChangeYear(yr)}
+    >
+      {yr}
+    </button>
+  ));
+
+  //onclick to change state of year
+  const handleChangeYear = (yr) => {
+    setYear(yr);
+  };
 
   return (
-    <div className='chart'>
+    <section className='chart'>
       <ResponsiveLine
         data={yearData}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
@@ -88,21 +109,7 @@ export default function ChartComponent(data) {
           },
         ]}
       />
-      <div>Year buttons here</div>
-      <style jsx>
-        {`
-          .chart {
-            height: 50vh;
-            width: 60vw;
-            background: white;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-          }
-
-          .chart:hover {
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-          }
-        `}
-      </style>
-    </div>
+      <section className='chart-year-buttons'>{displayYearList}</section>
+    </section>
   );
 }
