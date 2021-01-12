@@ -4,7 +4,7 @@ import { useState } from 'react';
 import dayjs from 'dayjs';
 
 export default function ChartComponent(data) {
-  const [year, setYear] = useState('');
+  const [year, setYear] = useState('2000');
 
   //converts Order Date from 1/2/19 => 1/2019, Item Total from '$150.45' to 150.45
   const convertDateAndTotal = (array) => {
@@ -69,7 +69,7 @@ export default function ChartComponent(data) {
     <button
       key={idx}
       className='chart-year-buttons__button'
-      onClick={() => handleChangeYear(yr)}
+      onFocus={() => handleChangeYear(yr)}
     >
       {yr}
     </button>
@@ -80,9 +80,26 @@ export default function ChartComponent(data) {
     setYear(yr);
   };
 
-  // const maxSpentPerYear = (arr) => {};
+  //get max per year
+  const maxSpentPerYear =
+    filteredYear(coordinates, year).length == 0
+      ? 1
+      : filteredYear(coordinates, year).reduce(function (prev, current) {
+          return prev.y > current.y ? prev : current;
+        });
 
-  console.log(data);
+  //supply max per year to yscale max
+  const maxValue = (curMaxNum) => {
+    let padding;
+    if (curMaxNum <= 10) {
+      padding = 10;
+    } else if (curMaxNum > 10 && curMaxNum <= 1000) {
+      padding = 100;
+    } else {
+      padding = 1000;
+    }
+    return Math.ceil(curMaxNum / padding) * padding;
+  };
 
   return (
     <section className='chart'>
@@ -93,7 +110,7 @@ export default function ChartComponent(data) {
         yScale={{
           type: 'linear',
           min: '0',
-          max: '200',
+          max: maxValue(maxSpentPerYear.y),
           stacked: false,
           reverse: false,
         }}
