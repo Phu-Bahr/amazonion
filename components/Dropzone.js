@@ -1,6 +1,7 @@
 import { parse } from 'papaparse';
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { convertData } from '../util/tools';
 
 export default function Dropzone({ data, handleNewData }) {
   //when you drop file, dropzone gives you acceptedFiles object
@@ -13,17 +14,32 @@ export default function Dropzone({ data, handleNewData }) {
       //here is where you use papaparse, header true to make first row of csv file as property keys
       const csvData = parse(reader.result, { header: true });
 
-      handleNewData(csvData);
+      //sum up each month per year
+      const sumPerMonth = convertData(csvData.data).reduce((acc, cur) => {
+        acc[cur['Order Date']] =
+          acc[cur['Order Date']] + cur['Item Total'] || cur['Item Total'];
+        return acc;
+      }, {});
+
+      //convert each summed up month to x y cordinates. month: value => x: month, y: value
+      const coordinates = Object.entries(sumPerMonth).map(([key, value]) => {
+        return {
+          x: key.split('/').shift(),
+          y: value,
+          year: key.split('/').pop(),
+        };
+      });
+
+      handleNewData(coordinates);
     };
 
     // read file contents
     acceptedFiles.forEach((file) => reader.readAsBinaryString(file));
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: 'text/csv',
-  });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  console.log(data);
 
   return (
     <div className='dropzone' {...getRootProps()}>
@@ -32,6 +48,12 @@ export default function Dropzone({ data, handleNewData }) {
         <span>Drag 'n' Drop a file here</span>
         <span>or click to upload</span>
       </p>
+      <section>
+        {data.data &&
+          data.data.map((purchase, idx) => (
+            <div key={idx}>{purchase.Title}</div>
+          ))}
+      </section>
     </div>
   );
 }

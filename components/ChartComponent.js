@@ -1,66 +1,28 @@
 import { ResponsiveLine } from '@nivo/line';
 import { useState } from 'react';
-// import { convertDateAndTotal } from '../util/tools';
-import dayjs from 'dayjs';
 
 export default function ChartComponent(data) {
-  const [year, setYear] = useState('2000');
+  const [year, setYear] = useState('2020');
 
-  //converts Order Date from 1/2/19 => 1/2019, Item Total from '$150.45' to 150.45
-  const convertDateAndTotal = (array) => {
-    console.log(array.data);
-    let convertedDate =
-      array.data &&
-      array.data.map((x) => ({
-        ...x,
-        'Order Date': dayjs(x['Order Date']).format('MMM/YYYY'),
-        'Item Total': parseFloat(x['Item Total'].replace(/[^0-9.-]+/g, '')),
-      }));
-
-    return convertedDate;
-  };
-
-  //sum up each month per year Jan/2011: $500.00, Jan/2012: $400.00
-  const sumPerMonth =
-    convertDateAndTotal(data.data) &&
-    convertDateAndTotal(data.data).reduce((acc, cur) => {
-      acc[cur['Order Date']] =
-        acc[cur['Order Date']] + cur['Item Total'] || cur['Item Total'];
-      return acc;
-    }, {});
-
-  //convert each summed up month to x y cordinates. month: value => x: month, y: value, year: year
-  const coordinates = !sumPerMonth
-    ? [{ x: 'Jan', y: 1, year: '2000' }]
-    : Object.entries(sumPerMonth).map(([key, value]) => {
-        return {
-          x: key.split('/').shift(),
-          y: value,
-          year: key.split('/').pop(),
-        };
-      });
-
-  //filters the months by year to be used in yearData
-  const filteredYear = (array, chosenYear) => {
-    let pickedYear = array && array.filter((yr) => yr.year === chosenYear);
+  //filters the months by year
+  const filteredYear = (array, year) => {
+    let pickedYear = array.filter((yr) => yr.year == year);
     return pickedYear;
   };
 
   //data for the chart
   const yearData = [
     {
-      id: `Year - ${year}`,
+      id: 'Year',
       color: 'hsl(336, 70%, 50%)',
-      data: filteredYear(coordinates, year),
+      data: filteredYear(data.data, year),
     },
   ];
 
-  // get list of years for buttons
-  const yearList =
-    coordinates &&
-    coordinates.map((element) => {
-      return element.year;
-    });
+  // get list of years
+  const yearList = data.data.map((element) => {
+    return element.year;
+  });
 
   // remove dupes from list yearList
   const reducedYearList = [...new Set(yearList)];
@@ -80,37 +42,37 @@ export default function ChartComponent(data) {
     setYear(yr);
   };
 
-  //get max per year
-  const maxSpentPerYear =
-    filteredYear(coordinates, year).length == 0
-      ? 1
-      : filteredYear(coordinates, year).reduce(function (prev, current) {
-          return prev.y > current.y ? prev : current;
-        });
+  //   //get max per year
+  //   const maxSpentPerYear =
+  //   filteredYear(coordinates, year).length == 0
+  //     ? 1
+  //     : filteredYear(coordinates, year).reduce(function (prev, current) {
+  //         return prev.y > current.y ? prev : current;
+  //       });
 
-  //supply max per year to yscale max
-  const maxValue = (curMaxNum) => {
-    let padding;
-    if (curMaxNum <= 10) {
-      padding = 10;
-    } else if (curMaxNum > 10 && curMaxNum <= 1000) {
-      padding = 100;
-    } else {
-      padding = 1000;
-    }
-    return Math.ceil(curMaxNum / padding) * padding;
-  };
+  // //supply max per year to yscale max
+  // const maxValue = (curMaxNum) => {
+  //   let padding;
+  //   if (curMaxNum <= 10) {
+  //     padding = 10;
+  //   } else if (curMaxNum > 10 && curMaxNum <= 1000) {
+  //     padding = 100;
+  //   } else {
+  //     padding = 1000;
+  //   }
+  //   return Math.ceil(curMaxNum / padding) * padding;
+  // };
 
   return (
     <section className='chart'>
       <ResponsiveLine
         data={yearData}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        margin={{ top: 50, right: 110, bottom: 50, left: 70 }}
         xScale={{ type: 'point' }}
         yScale={{
           type: 'linear',
           min: '0',
-          max: maxValue(maxSpentPerYear.y),
+          max: 'auto',
           stacked: false,
           reverse: false,
         }}
