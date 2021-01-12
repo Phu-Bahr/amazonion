@@ -1,12 +1,48 @@
 import { ResponsiveLine } from '@nivo/line';
 import { useState } from 'react';
+// import { convertDateAndTotal } from '../util/tools';
+import dayjs from 'dayjs';
 
 export default function ChartComponent(data) {
   const [year, setYear] = useState('');
 
-  //filters the months by year
+  //converts Order Date from 1/2/19 => 1/2019, Item Total from '$150.45' to 150.45
+  const convertDateAndTotal = (array) => {
+    console.log(array.data);
+    let convertedDate =
+      array.data &&
+      array.data.map((x) => ({
+        ...x,
+        'Order Date': dayjs(x['Order Date']).format('MMM/YYYY'),
+        'Item Total': parseFloat(x['Item Total'].replace(/[^0-9.-]+/g, '')),
+      }));
+
+    return convertedDate;
+  };
+
+  //sum up each month per year Jan/2011: $500.00, Jan/2012: $400.00
+  const sumPerMonth =
+    convertDateAndTotal(data.data) &&
+    convertDateAndTotal(data.data).reduce((acc, cur) => {
+      acc[cur['Order Date']] =
+        acc[cur['Order Date']] + cur['Item Total'] || cur['Item Total'];
+      return acc;
+    }, {});
+
+  //convert each summed up month to x y cordinates. month: value => x: month, y: value, year: year
+  const coordinates = !sumPerMonth
+    ? [{ x: 'Jan', y: 1, year: '2000' }]
+    : Object.entries(sumPerMonth).map(([key, value]) => {
+        return {
+          x: key.split('/').shift(),
+          y: value,
+          year: key.split('/').pop(),
+        };
+      });
+
+  //filters the months by year to be used in yearData
   const filteredYear = (array, chosenYear) => {
-    let pickedYear = array.filter((yr) => yr.year === chosenYear);
+    let pickedYear = array && array.filter((yr) => yr.year === chosenYear);
     return pickedYear;
   };
 
@@ -15,20 +51,23 @@ export default function ChartComponent(data) {
     {
       id: `Year - ${year}`,
       color: 'hsl(336, 70%, 50%)',
-      data: filteredYear(data.data, year),
+      data: filteredYear(coordinates, year),
     },
   ];
 
-  // get list of years
-  const yearList = data.data.map((element) => {
-    return element.year;
-  });
+  // get list of years for buttons
+  const yearList =
+    coordinates &&
+    coordinates.map((element) => {
+      return element.year;
+    });
 
   // remove dupes from list yearList
   const reducedYearList = [...new Set(yearList)];
 
-  let displayYearList = reducedYearList.map((yr) => (
+  let displayYearList = reducedYearList.map((yr, idx) => (
     <button
+      key={idx}
       className='chart-year-buttons__button'
       onClick={() => handleChangeYear(yr)}
     >
@@ -41,6 +80,10 @@ export default function ChartComponent(data) {
     setYear(yr);
   };
 
+  // const maxSpentPerYear = (arr) => {};
+
+  console.log(data);
+
   return (
     <section className='chart'>
       <ResponsiveLine
@@ -50,7 +93,7 @@ export default function ChartComponent(data) {
         yScale={{
           type: 'linear',
           min: '0',
-          max: '600',
+          max: '200',
           stacked: false,
           reverse: false,
         }}

@@ -4,14 +4,12 @@ import ChartComponent from '../components/ChartComponent';
 import Dropzone from '../components/Dropzone';
 
 export default function Home() {
+  // data is holding data.array so data.data
   const [data, setData] = useState([]);
 
   const handleNewData = (payload) => {
     setData(payload);
   };
-
-  // console.log(data);
-  // console.table(data.data);
 
   return (
     <div>
