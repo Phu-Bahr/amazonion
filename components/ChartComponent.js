@@ -76,6 +76,10 @@ export default function ChartComponent(data) {
           legendOffset: -40,
           legendPosition: 'middle',
         }}
+        motionConfig={'wobbly'}
+        enablePointLabel={true}
+        enableArea={true}
+        enableGridX={false}
         pointSize={10}
         pointColor={{ theme: 'background' }}
         pointBorderWidth={2}
