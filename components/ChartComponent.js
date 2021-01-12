@@ -4,7 +4,7 @@ import { useState } from 'react';
 import dayjs from 'dayjs';
 
 export default function ChartComponent(data) {
-  const [year, setYear] = useState('2000');
+  const [year, setYear] = useState('2020');
 
   //converts Order Date from 1/2/19 => 1/2019, Item Total from '$150.45' to 150.45
   const convertDateAndTotal = (array) => {
@@ -49,7 +49,7 @@ export default function ChartComponent(data) {
   //data for the chart
   const yearData = [
     {
-      id: `Year - ${year}`,
+      id: 'Year',
       color: 'hsl(336, 70%, 50%)',
       data: filteredYear(coordinates, year),
     },
