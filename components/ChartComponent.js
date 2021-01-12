@@ -5,15 +5,15 @@ export default function ChartComponent(data) {
   const [year, setYear] = useState('');
 
   //filters the months by year
-  const filteredYear = (array, year) => {
-    let pickedYear = array.filter((yr) => yr.x.split('/').splice(1, 1) == year);
+  const filteredYear = (array, chosenYear) => {
+    let pickedYear = array.filter((yr) => yr.year === chosenYear);
     return pickedYear;
   };
 
   //data for the chart
   const yearData = [
     {
-      id: 'Year',
+      id: `Year - ${year}`,
       color: 'hsl(336, 70%, 50%)',
       data: filteredYear(data.data, year),
     },
@@ -21,7 +21,7 @@ export default function ChartComponent(data) {
 
   // get list of years
   const yearList = data.data.map((element) => {
-    return element.x.split('/').slice(1).join();
+    return element.year;
   });
 
   // remove dupes from list yearList
@@ -75,6 +75,7 @@ export default function ChartComponent(data) {
           legend: 'Total Spent',
           legendOffset: -40,
           legendPosition: 'middle',
+          format: (v) => `$${v}`,
         }}
         motionConfig={'wobbly'}
         enablePointLabel={true}

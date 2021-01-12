@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 export const convertDateAndTotal = (array) => {
   let convertedDate = array.map((x) => ({
     ...x,
-    'Order Date': dayjs(x['Order Date']).format('MM/YYYY'),
+    'Order Date': dayjs(x['Order Date']).format('MMM/YYYY'),
     'Item Total': parseFloat(x['Item Total'].replace(/[^0-9.-]+/g, '')),
   }));
 
