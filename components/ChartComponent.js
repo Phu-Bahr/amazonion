@@ -1,29 +1,13 @@
 import { ResponsiveLine } from '@nivo/line';
 import { useState } from 'react';
-// import { convertDateAndTotal } from '../util/tools';
-import dayjs from 'dayjs';
 
 export default function ChartComponent(data) {
   const [year, setYear] = useState('2020');
-
-  //converts Order Date from 1/2/19 => 1/2019, Item Total from '$150.45' to 150.45
-  const convertDateAndTotal = (array) => {
-    console.log(array.data);
-    let convertedDate =
-      array.data &&
-      array.data.map((x) => ({
-        ...x,
-        'Order Date': dayjs(x['Order Date']).format('MMM/YYYY'),
-        'Item Total': parseFloat(x['Item Total'].replace(/[^0-9.-]+/g, '')),
-      }));
-
-    return convertedDate;
-  };
-
+  console.log(data);
   //sum up each month per year Jan/2011: $500.00, Jan/2012: $400.00
   const sumPerMonth =
-    convertDateAndTotal(data.data) &&
-    convertDateAndTotal(data.data).reduce((acc, cur) => {
+    data.data &&
+    data.data.reduce((acc, cur) => {
       acc[cur['Order Date']] =
         acc[cur['Order Date']] + cur['Item Total'] || cur['Item Total'];
       return acc;
@@ -105,7 +89,7 @@ export default function ChartComponent(data) {
     <section className='chart'>
       <ResponsiveLine
         data={yearData}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        margin={{ top: 50, right: 110, bottom: 50, left: 70 }}
         xScale={{ type: 'point' }}
         yScale={{
           type: 'linear',
@@ -133,7 +117,7 @@ export default function ChartComponent(data) {
           tickPadding: 5,
           tickRotation: 0,
           legend: 'Total Spent',
-          legendOffset: -40,
+          legendOffset: -50,
           legendPosition: 'middle',
           format: (v) => `$${v}`,
         }}

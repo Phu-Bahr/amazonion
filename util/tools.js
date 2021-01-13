@@ -1,13 +1,9 @@
 import dayjs from 'dayjs';
 
 //converts Order Date from 1/2/19 => 1/2019, Item Total from '$150.45' to 150.45
-export const convertDateAndTotal = (array) => {
+export const convertData = (array) => {
   let newArray;
-  if (array) {
-    newArray = array.data;
-  } else {
-    newArray = null;
-  }
+  array ? (newArray = array.data) : (newArray = null);
 
   let convertedDate = newArray.map((x) => ({
     ...x,
