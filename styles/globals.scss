@@ -18,6 +18,7 @@ html {
 body {
   box-sizing: border-box;
   font-family: 'AmazonFont';
+  font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.2;
   background-image: url(https://images.unsplash.com/photo-1557899563-1940fc95709c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80);
@@ -93,6 +94,69 @@ a {
 
     &:focus {
       background-color: #ff9901;
+    }
+  }
+}
+
+.welcome-container {
+  position: relative;
+  z-index: 100;
+  height: 100vh;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-modal {
+  background-color: red;
+
+  padding: 2rem;
+
+  &__header {
+    background-color: yellow;
+    font-size: 5rem;
+    text-align: center;
+    padding: 1rem;
+  }
+  &__mini-header {
+    background-color: purple;
+    font-size: 4rem;
+    text-align: center;
+    padding: 1rem;
+  }
+  &__paragraph {
+    background-color: green;
+    font-size: 3rem;
+    padding: 1rem;
+  }
+  &__steps {
+    background-color: orange;
+    padding: 1rem;
+    font-size: 2rem;
+    // remove bullet points but not the semantics
+    list-style-type: none;
+    &::before {
+      content: '\200B'; /* add zero-width space */
+      position: absolute; /* ensures it doesn't cause a gap */
+    }
+
+    &--step {
+      background-color: teal;
+
+      &-link {
+        background-color: brown;
+        text-decoration: none;
+      }
+    }
+  }
+  &__button-container {
+    background-color: orchid;
+    text-align: center;
+
+    &--close-button {
+      background-color: white;
+      padding: 0.5rem;
     }
   }
 }
