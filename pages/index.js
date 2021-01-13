@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 import ChartComponent from '../components/ChartComponent';
 import Dropzone from '../components/Dropzone';
+import { convertData } from '../util/tools';
 
 export default function Home() {
   // data is holding data.array so data.data
@@ -20,7 +21,8 @@ export default function Home() {
 
       <main className='container'>
         <Dropzone handleNewData={handleNewData} data={data} />
-        <ChartComponent data={data} />
+
+        {/* <ChartComponent data={data} /> */}
       </main>
     </div>
   );

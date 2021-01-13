@@ -1,6 +1,7 @@
 import { parse } from 'papaparse';
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { convertData } from '../util/tools';
 
 export default function Dropzone({ data, handleNewData }) {
   //when you drop file, dropzone gives you acceptedFiles object
@@ -13,7 +14,9 @@ export default function Dropzone({ data, handleNewData }) {
       //here is where you use papaparse, header true to make first row of csv file as property keys
       const csvData = parse(reader.result, { header: true });
 
-      handleNewData(csvData);
+      const convertedData = convertData(csvData);
+
+      handleNewData(convertedData);
     };
 
     // read file contents
