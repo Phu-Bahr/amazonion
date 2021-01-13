@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { convertData } from '../util/tools';
 
-export default function Dropzone({ data, handleNewData }) {
+export default function Dropzone({ handleNewData }) {
   //when you drop file, dropzone gives you acceptedFiles object
   const onDrop = useCallback((acceptedFiles) => {
     const reader = new FileReader();

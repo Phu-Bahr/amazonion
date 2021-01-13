@@ -107,7 +107,7 @@ export default function ChartComponent(data) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: 'Month',
+          legend: `Months for ${year}`,
           legendOffset: 36,
           legendPosition: 'middle',
         }}
