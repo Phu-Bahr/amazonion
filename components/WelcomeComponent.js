@@ -1,40 +1,55 @@
-export default function WelcomeModal() {
+import { useState } from 'react';
+import Dropzone from './Dropzone';
+
+export default function WelcomeModal({ handleNewData, data }) {
+  const [index, setIndex] = useState(100);
+
   return (
-    <section class='welcome-container'>
-      <div class='welcome-modal'>
-        <h1 class='welcome-modal__header'>Amazonion</h1>
-        <h2 class='welcome-modal__mini-header'>
-          An Amazon orders Data Visualizer
+    <section className='welcome-container' style={{ zIndex: index }}>
+      <div className='welcome-modal'>
+        {/* <div className='welcome-modal__close-button-container'>
+          <button
+            className='welcome-modal__close-button-container--button'
+            aria-label='Close'
+          >
+            <span aria-hidden='true'>X</span>
+          </button>
+        </div> */}
+
+        <h1 className='welcome-modal__header'>amazonion</h1>
+        <h2 className='welcome-modal__mini-header'>
+          An amazon orders Data Visualizer
         </h2>
-        <p class='welcome-modal__paragraph'>
+        <p className='welcome-modal__paragraph'>
           Just follow these 3 steps to get started:
         </p>
-        <ul class='welcome-modal__steps'>
-          <li class='welcome-modal__steps--step'>
+        <ul className='welcome-modal__steps'>
+          <li className='welcome-modal__steps--step'>
             <strong>Step 1.</strong> Click{' '}
             <a
               href='https://www.amazon.com/gp/b2b/reports'
               target='_blank'
-              class='welcome-modal__steps--step-link'
+              className='welcome-modal__steps--step-link'
             >
               Here
             </a>{' '}
             to go to Amazon's order history page.
           </li>
-          <li class='welcome-modal__steps--step'>
+          <li className='welcome-modal__steps--step'>
             <strong>Step 2.</strong> Request Report. Type &rarr; Items, Start
             and End Date.
           </li>
-          <li class='welcome-modal__steps--step'>
+          <li className='welcome-modal__steps--step'>
             <strong>Step 3.</strong> Choose file or Drag n Drop file over the
-            next page's box.
+            box below.
           </li>
         </ul>
-        <div className='welcome-modal__button-container'>
-          <button class='welcome-modal__button-container--close-button'>
-            Let's get started!
+        {/* <div className='welcome-modal__button-container'>
+          <button className='welcome-modal__button-container--close-button'>
+            Let's get started! &rarr;
           </button>
-        </div>
+        </div> */}
+        <Dropzone handleNewData={handleNewData} data={data} />
       </div>
     </section>
   );

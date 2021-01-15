@@ -26,9 +26,15 @@ body {
   background-size: cover;
 }
 
+$primary-color: #ff9900;
+$secondary-color: #000000;
+$tertiary-color: #31c4f3;
+$tertiary-dark: #252021;
+$amazon-grey: #999999;
+
 a {
   color: inherit;
-  text-decoration: none;
+  // text-decoration: none;
 }
 
 .container {
@@ -42,13 +48,7 @@ a {
 .dropzone {
   border: dotted 2px white;
   padding: 2rem;
-  width: 40%;
-  height: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  backdrop-filter: blur(10px);
+  border-radius: 0 0 40px 40px;
 
   &:hover {
     cursor: pointer;
@@ -93,45 +93,72 @@ a {
     border-radius: 1rem;
 
     &:focus {
-      background-color: #ff9901;
+      background-color: $primary-color;
     }
   }
 }
 
 .welcome-container {
-  position: relative;
-  z-index: 100;
-  height: 100vh;
-  background-color: blue;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .welcome-modal {
-  background-color: red;
-
+  backdrop-filter: blur(10px);
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  border-radius: 40px;
+  background-color: rgba($tertiary-dark, 0.4);
+  box-shadow: 1rem 1rem 1.8rem #bebebe, -1rem -1rem 1.8rem #ffffff;
+
+  // &__close-button-container {
+  //   transition: all 0.2s;
+  //   align-self: flex-end;
+  //   border-radius: 50%;
+  //   position: relative;
+
+  //   &--button,
+  //   &--button:focus,
+  //   &--button:active {
+  //     position: absolute;
+  //     bottom: -1rem;
+  //     left: -1rem;
+  //     width: 4rem;
+  //     height: 4rem;
+  //     background-color: $primary-color;
+  //     border-radius: 50%;
+  //     font-size: 1.6rem;
+  //     font-weight: 700;
+  //     transition: all 0.3s;
+  //     &:hover {
+  //       background-color: $tertiary-color;
+  //       cursor: pointer;
+  //       color: white;
+  //       border-color: white;
+  //     }
+  //   }
+  // }
 
   &__header {
-    background-color: yellow;
     font-size: 5rem;
     text-align: center;
     padding: 1rem;
+    color: white;
   }
   &__mini-header {
-    background-color: purple;
-    font-size: 4rem;
+    font-size: 3.5rem;
     text-align: center;
     padding: 1rem;
+    color: $primary-color;
   }
   &__paragraph {
-    background-color: green;
     font-size: 3rem;
     padding: 1rem;
   }
   &__steps {
-    background-color: orange;
     padding: 1rem;
     font-size: 2rem;
     // remove bullet points but not the semantics
@@ -142,20 +169,15 @@ a {
     }
 
     &--step {
-      background-color: teal;
-
       &-link {
-        background-color: brown;
-        text-decoration: none;
+        color: $primary-color;
       }
     }
   }
   &__button-container {
-    background-color: orchid;
     text-align: center;
 
     &--close-button {
-      background-color: white;
       padding: 0.5rem;
     }
   }
