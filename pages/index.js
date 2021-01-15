@@ -19,10 +19,8 @@ export default function Home() {
       </Head>
 
       <main className='container'>
-        {/* <WelcomeModal /> */}
-
         {data.length == 0 ? (
-          <Dropzone handleNewData={handleNewData} data={data} />
+          <WelcomeModal handleNewData={handleNewData} data={data} />
         ) : (
           <ChartComponent data={data} />
         )}

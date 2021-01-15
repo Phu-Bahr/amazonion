@@ -15,7 +15,7 @@ export default function ChartComponent(data) {
 
   //convert each summed up month to x y cordinates. month: value => x: month, y: value, year: year
   const coordinates = !sumPerMonth
-    ? [{ x: 'Jan', y: 1, year: '2000' }]
+    ? [{ x: 'Jan', y: 1, year: '2020' }]
     : Object.entries(sumPerMonth).map(([key, value]) => {
         return {
           x: key.split('/').shift(),
