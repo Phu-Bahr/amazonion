@@ -6,6 +6,7 @@ import WelcomeModal from '../components/WelcomeComponent';
 export default function Home() {
   const [data, setData] = useState([]);
   const [yearList, setYearList] = useState([]);
+  const [year, setYear] = useState('2020');
 
   const handleNewData = (payload) => {
     setData(payload);
@@ -14,6 +15,21 @@ export default function Home() {
   const handleYearList = (payload) => {
     setYearList(payload);
   };
+
+  const handleYear = (payload) => {
+    setYear(payload);
+  };
+
+  let displayYearList = yearList.map((yr, idx) => (
+    <button
+      key={idx}
+      className='chart-year-buttons__button'
+      onFocus={() => handleYear(yr)}
+      onClick={() => handleYear(yr)}
+    >
+      {yr}
+    </button>
+  ));
 
   return (
     <div>
@@ -30,7 +46,15 @@ export default function Home() {
             data={data}
           />
         ) : (
-          <ChartComponent data={data} yearList={yearList} />
+          <>
+            <ChartComponent
+              data={data}
+              yearList={yearList}
+              year={year}
+              handleYear={handleYear}
+            />
+            <section className='chart-year-buttons'>{displayYearList}</section>
+          </>
         )}
       </main>
     </div>

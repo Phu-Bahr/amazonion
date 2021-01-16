@@ -1,9 +1,6 @@
 import { ResponsiveLine } from '@nivo/line';
-import { useState } from 'react';
 
-export default function ChartComponent({ data, yearList }) {
-  const [year, setYear] = useState('2020');
-
+export default function ChartComponent({ data, year }) {
   //sum up each month per year Jan/2011: $500.00, Jan/2012: $400.00
   const sumPerMonth =
     data &&
@@ -39,20 +36,10 @@ export default function ChartComponent({ data, yearList }) {
     },
   ];
 
-  let displayYearList = yearList.map((yr, idx) => (
-    <button
-      key={idx}
-      className='chart-year-buttons__button'
-      onFocus={() => handleChangeYear(yr)}
-    >
-      {yr}
-    </button>
-  ));
-
   //onclick to change state of year
-  const handleChangeYear = (yr) => {
-    setYear(yr);
-  };
+  // const handleChangeYear = (yr) => {
+  //   setYear(yr);
+  // };
 
   //get max per year
   const maxSpentPerYear =
@@ -148,7 +135,6 @@ export default function ChartComponent({ data, yearList }) {
           },
         ]}
       />
-      <section className='chart-year-buttons'>{displayYearList}</section>
     </section>
   );
 }
