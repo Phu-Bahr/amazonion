@@ -5,9 +5,14 @@ import WelcomeModal from '../components/WelcomeComponent';
 
 export default function Home() {
   const [data, setData] = useState([]);
+  const [yearList, setYearList] = useState([]);
 
   const handleNewData = (payload) => {
     setData(payload);
+  };
+
+  const handleYearList = (payload) => {
+    setYearList(payload);
   };
 
   return (
@@ -19,9 +24,13 @@ export default function Home() {
 
       <main className='container'>
         {data.length == 0 ? (
-          <WelcomeModal handleNewData={handleNewData} data={data} />
+          <WelcomeModal
+            handleNewData={handleNewData}
+            handleYearList={handleYearList}
+            data={data}
+          />
         ) : (
-          <ChartComponent data={data} />
+          <ChartComponent data={data} yearList={yearList} />
         )}
       </main>
     </div>

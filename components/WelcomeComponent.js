@@ -1,21 +1,12 @@
 import { useState } from 'react';
 import Dropzone from './Dropzone';
 
-export default function WelcomeModal({ handleNewData, data }) {
+export default function WelcomeModal({ handleNewData, handleYearList, data }) {
   const [index, setIndex] = useState(100);
 
   return (
     <section className='welcome-container' style={{ zIndex: index }}>
       <div className='welcome-modal'>
-        {/* <div className='welcome-modal__close-button-container'>
-          <button
-            className='welcome-modal__close-button-container--button'
-            aria-label='Close'
-          >
-            <span aria-hidden='true'>X</span>
-          </button>
-        </div> */}
-
         <h1 className='welcome-modal__header'>amazonion</h1>
         <h2 className='welcome-modal__mini-header'>
           An amazon orders Data Visualizer
@@ -44,12 +35,12 @@ export default function WelcomeModal({ handleNewData, data }) {
             box below.
           </li>
         </ul>
-        {/* <div className='welcome-modal__button-container'>
-          <button className='welcome-modal__button-container--close-button'>
-            Let's get started! &rarr;
-          </button>
-        </div> */}
-        <Dropzone handleNewData={handleNewData} data={data} />
+
+        <Dropzone
+          handleNewData={handleNewData}
+          handleYearList={handleYearList}
+          data={data}
+        />
       </div>
     </section>
   );

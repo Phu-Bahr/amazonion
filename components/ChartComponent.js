@@ -1,13 +1,13 @@
 import { ResponsiveLine } from '@nivo/line';
 import { useState } from 'react';
 
-export default function ChartComponent(data) {
+export default function ChartComponent({ data, yearList }) {
   const [year, setYear] = useState('2020');
-  console.log(data);
+
   //sum up each month per year Jan/2011: $500.00, Jan/2012: $400.00
   const sumPerMonth =
-    data.data &&
-    data.data.reduce((acc, cur) => {
+    data &&
+    data.reduce((acc, cur) => {
       acc[cur['Order Date']] =
         acc[cur['Order Date']] + cur['Item Total'] || cur['Item Total'];
       return acc;
@@ -39,17 +39,7 @@ export default function ChartComponent(data) {
     },
   ];
 
-  // get list of years for buttons
-  const yearList =
-    coordinates &&
-    coordinates.map((element) => {
-      return element.year;
-    });
-
-  // remove dupes from list yearList
-  const reducedYearList = [...new Set(yearList)];
-
-  let displayYearList = reducedYearList.map((yr, idx) => (
+  let displayYearList = yearList.map((yr, idx) => (
     <button
       key={idx}
       className='chart-year-buttons__button'
@@ -114,10 +104,10 @@ export default function ChartComponent(data) {
         axisLeft={{
           orient: 'left',
           tickSize: 5,
-          tickPadding: 5,
+          tickPadding: 15,
           tickRotation: 0,
           legend: 'Total Spent',
-          legendOffset: -50,
+          legendOffset: -55,
           legendPosition: 'middle',
           format: (v) => `$${v}`,
         }}
