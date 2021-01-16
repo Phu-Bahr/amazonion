@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import ChartComponent from '../components/ChartComponent';
-import Dropzone from '../components/Dropzone';
 import WelcomeModal from '../components/WelcomeComponent';
 
 export default function Home() {

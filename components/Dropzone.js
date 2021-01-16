@@ -15,7 +15,7 @@ export default function Dropzone({ handleNewData }) {
       const csvData = parse(reader.result, { header: true });
 
       const convertedData = convertData(csvData);
-
+      // console.log('convertedDAta', convertedData);
       handleNewData(convertedData);
     };
 
