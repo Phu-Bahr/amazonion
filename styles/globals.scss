@@ -9,6 +9,7 @@
 *::before {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
 
@@ -16,6 +17,7 @@ html {
   font-size: 62.5%;
 }
 body {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-family: 'AmazonFont';
   font-size: 1.6rem;
@@ -34,14 +36,23 @@ $amazon-grey: #999999;
 
 a {
   color: inherit;
-  // text-decoration: none;
 }
 
 .container {
   height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 //dropzone area
@@ -74,73 +85,61 @@ a {
   height: 50vh;
   width: 60vw;
   background: white;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .chart:hover {
+  -webkit-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 //chart buttons
 .chart-year-buttons {
-  // background-color: green;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 4rem;
 
   &__button {
-    // background-color: yellow;
     padding: 1rem;
     border-radius: 1rem;
 
-    &:focus {
+    &:focus,
+    &:hover {
       background-color: $primary-color;
     }
   }
 }
 
 .welcome-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .welcome-modal {
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   color: white;
   border-radius: 40px;
   background-color: rgba($tertiary-dark, 0.4);
+  -webkit-box-shadow: 1rem 1rem 1.8rem #bebebe, -1rem -1rem 1.8rem #ffffff;
   box-shadow: 1rem 1rem 1.8rem #bebebe, -1rem -1rem 1.8rem #ffffff;
-
-  // &__close-button-container {
-  //   transition: all 0.2s;
-  //   align-self: flex-end;
-  //   border-radius: 50%;
-  //   position: relative;
-
-  //   &--button,
-  //   &--button:focus,
-  //   &--button:active {
-  //     position: absolute;
-  //     bottom: -1rem;
-  //     left: -1rem;
-  //     width: 4rem;
-  //     height: 4rem;
-  //     background-color: $primary-color;
-  //     border-radius: 50%;
-  //     font-size: 1.6rem;
-  //     font-weight: 700;
-  //     transition: all 0.3s;
-  //     &:hover {
-  //       background-color: $tertiary-color;
-  //       cursor: pointer;
-  //       color: white;
-  //       border-color: white;
-  //     }
-  //   }
-  // }
 
   &__header {
     font-size: 5rem;
@@ -161,7 +160,7 @@ a {
   &__steps {
     padding: 1rem;
     font-size: 2rem;
-    // remove bullet points but not the semantics
+
     list-style-type: none;
     &::before {
       content: '\200B'; /* add zero-width space */
