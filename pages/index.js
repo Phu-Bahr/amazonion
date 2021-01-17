@@ -39,13 +39,12 @@ export default function Home() {
       </Head>
 
       <main className='container'>
-        {data.length == 0 ? (
-          <WelcomeModal
-            handleNewData={handleNewData}
-            handleYearList={handleYearList}
-            data={data}
-          />
-        ) : (
+        <WelcomeModal
+          handleNewData={handleNewData}
+          handleYearList={handleYearList}
+          data={data}
+        />
+        {data.length > 0 && (
           <>
             <ChartComponent
               data={data}
