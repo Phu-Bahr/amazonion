@@ -2,10 +2,12 @@ import { useState } from 'react';
 import Dropzone from './Dropzone';
 
 export default function WelcomeModal({ handleNewData, handleYearList, data }) {
-  const [index, setIndex] = useState(100);
-
   return (
-    <section className='welcome-container' style={{ zIndex: index }}>
+    <section
+      className={
+        data.length == 0 ? 'welcome-container' : 'welcome-container-out'
+      }
+    >
       <div className='welcome-modal'>
         <h1 className='welcome-modal__header'>amazonion</h1>
         <h2 className='welcome-modal__mini-header'>

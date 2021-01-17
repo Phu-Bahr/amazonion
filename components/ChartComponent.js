@@ -36,11 +36,6 @@ export default function ChartComponent({ data, year }) {
     },
   ];
 
-  //onclick to change state of year
-  // const handleChangeYear = (yr) => {
-  //   setYear(yr);
-  // };
-
   //get max per year
   const maxSpentPerYear =
     filteredYear(coordinates, year).length == 0
