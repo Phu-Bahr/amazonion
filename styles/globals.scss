@@ -40,7 +40,7 @@ a {
 }
 
 .container {
-  height: 80vh;
+  height: 90vh;
   padding: 5rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -80,8 +80,8 @@ a {
 
 //chart dimensions
 .chart {
-  height: 50vh;
-  width: 60vw;
+  height: 60%;
+  width: 50%;
   background: white;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -118,6 +118,40 @@ a {
     &:focus,
     &:hover {
       background-color: $primary-color;
+    }
+  }
+}
+
+.pie-chart {
+  height: 60%;
+  width: 50%;
+  position: relative;
+
+  &__details {
+    // background-color: blue;
+    position: absolute;
+    top: 49%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    // This is important to preserve the chart interactivity
+    pointer-events: none;
+
+    &--header {
+      font-weight: 900;
+    }
+    &--number {
+      font-size: 9rem;
+      line-height: 0.9;
+    }
+    &--detail {
+      font-size: 1.3rem;
     }
   }
 }
