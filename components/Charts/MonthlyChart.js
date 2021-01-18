@@ -30,7 +30,7 @@ export const MonthlyChart = ({ data, year }) => {
   //data for the chart
   const yearData = [
     {
-      id: 'Year',
+      id: 'Month Total',
       color: 'hsl(336, 70%, 50%)',
       data: filteredYear(coordinates, year),
     },
@@ -70,7 +70,7 @@ export const MonthlyChart = ({ data, year }) => {
           stacked: false,
           reverse: false,
         }}
-        yFormat=' >-.2f'
+        yFormat=' >-$,.2f'
         curve='natural'
         axisTop={null}
         axisRight={null}
@@ -93,6 +93,7 @@ export const MonthlyChart = ({ data, year }) => {
           legendPosition: 'middle',
           format: (v) => `$${v}`,
         }}
+        enableSlices='x'
         motionConfig={'wobbly'}
         enablePointLabel={true}
         enableArea={true}
