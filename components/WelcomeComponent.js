@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Dropzone from './Dropzone';
 
 export default function WelcomeModal({ handleNewData, handleYearList, data }) {
@@ -18,15 +17,16 @@ export default function WelcomeModal({ handleNewData, handleYearList, data }) {
         </p>
         <ul className='welcome-modal__steps'>
           <li className='welcome-modal__steps--step'>
-            <strong>Step 1.</strong> Click{' '}
+            <strong>Step 1.</strong> Click this{' '}
             <a
               href='https://www.amazon.com/gp/b2b/reports'
               target='_blank'
               className='welcome-modal__steps--step-link'
+              rel='noopener'
             >
-              Here
+              Amazon Orders Link
             </a>{' '}
-            to go to Amazon's order history page.
+            to go to order history page.
           </li>
           <li className='welcome-modal__steps--step'>
             <strong>Step 2.</strong> Request Report. Type &rarr; Items, Start
