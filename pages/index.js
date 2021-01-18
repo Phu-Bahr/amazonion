@@ -58,12 +58,12 @@ export default function Home() {
         />
         {data.length > 0 && (
           <>
-            <CategoryChart />
+            <CategoryChart {...props} />
             <MonthlyChart {...props} />
-            <section className='chart-year-buttons'>{displayYearList}</section>
           </>
         )}
       </main>
+      <section className='chart-year-buttons'>{displayYearList}</section>
     </>
   );
 }
