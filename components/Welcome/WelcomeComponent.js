@@ -1,6 +1,6 @@
-import Dropzone from './Dropzone';
+import { Dropzone } from './Dropzone';
 
-export default function WelcomeModal({ handleNewData, handleYearList, data }) {
+export const WelcomeModal = ({ handleNewData, handleYearList, data }) => {
   return (
     <section
       className={
@@ -46,4 +46,4 @@ export default function WelcomeModal({ handleNewData, handleYearList, data }) {
       </div>
     </section>
   );
-}
+};

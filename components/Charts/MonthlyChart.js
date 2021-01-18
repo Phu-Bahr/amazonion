@@ -1,6 +1,6 @@
 import { ResponsiveLine } from '@nivo/line';
 
-export default function ChartComponent({ data, year }) {
+export const MonthlyChart = ({ data, year }) => {
   //sum up each month per year Jan/2011: $500.00, Jan/2012: $400.00
   const sumPerMonth =
     data &&
@@ -132,4 +132,4 @@ export default function ChartComponent({ data, year }) {
       />
     </section>
   );
-}
+};
