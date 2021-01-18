@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import { useState } from 'react';
-import ChartComponent from '../components/ChartComponent';
-import WelcomeModal from '../components/WelcomeComponent';
+import { CategoryChart } from '../components/Charts/CategoryChart';
+import { MonthlyChart } from '../components/Charts/MonthlyChart';
+import { WelcomeModal } from '../components/Welcome/WelcomeComponent';
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -31,6 +32,12 @@ export default function Home() {
     </button>
   ));
 
+  const props = {
+    data: data,
+    year: year,
+    handleYear: handleYear,
+  };
+
   return (
     <>
       <html lang='en-US' />
@@ -51,12 +58,8 @@ export default function Home() {
         />
         {data.length > 0 && (
           <>
-            <ChartComponent
-              data={data}
-              yearList={yearList}
-              year={year}
-              handleYear={handleYear}
-            />
+            <CategoryChart />
+            <MonthlyChart {...props} />
             <section className='chart-year-buttons'>{displayYearList}</section>
           </>
         )}

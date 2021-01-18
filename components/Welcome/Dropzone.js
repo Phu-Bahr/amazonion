@@ -1,9 +1,9 @@
 import { parse } from 'papaparse';
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { convertData, getYearList } from '../util/tools';
+import { convertData, getYearList } from '../../util/tools';
 
-export default function Dropzone({ handleNewData, handleYearList }) {
+export const Dropzone = ({ handleNewData, handleYearList }) => {
   //when you drop file, dropzone gives you acceptedFiles object
   const onDrop = useCallback((acceptedFiles) => {
     const reader = new FileReader();
@@ -36,4 +36,4 @@ export default function Dropzone({ handleNewData, handleYearList }) {
       </p>
     </div>
   );
-}
+};
