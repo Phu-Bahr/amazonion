@@ -32,10 +32,15 @@ export default function Home() {
   ));
 
   return (
-    <div>
+    <>
+      <html lang='en-US' />
       <Head>
         <title>Amazonion</title>
         <link rel='icon' href='/favicon.ico' />
+        <meta
+          name='description'
+          content="Amazon Order's Data Visualizer Application"
+        />
       </Head>
 
       <main className='container'>
@@ -56,6 +61,6 @@ export default function Home() {
           </>
         )}
       </main>
-    </div>
+    </>
   );
 }
