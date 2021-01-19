@@ -23,7 +23,8 @@ export const convertData = (array) => {
     'Order Year': dayjs(x['Order Date']).format('YYYY'),
     'Item Total': parseFloat(x['Item Total'].replace(/[^0-9.-]+/g, '')),
     Quantity: parseFloat(x['Quantity'].replace(/[^0-9.-]+/g, '')),
-    Category: cleanString(x['Category']),
+    Category:
+      cleanString(x['Category']) == '' ? 'Misc' : cleanString(x['Category']),
   }));
 
   return convertedData;
