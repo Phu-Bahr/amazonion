@@ -34,6 +34,7 @@ $tertiary-dark: #252021;
 $amazon-grey: #999999;
 $color-white: #ffffff;
 $quadrant-background: rgba($color-white, 0.75);
+$quadrant-box-shadow: 0 0 3rem 0.5rem rgba($primary-color, 0.8);
 $animation-fade-in: fadeIn 0.3s ease-in;
 
 a {
@@ -55,10 +56,10 @@ a {
   animation: bounce-7 1.4s cubic-bezier(0.28, 0.84, 0.42, 1);
   grid-row: 1 / -1;
   grid-column: 1 / span 2;
-  // height: 50%;
   width: 45%;
   align-self: center;
   justify-self: center;
+  transition: all 1s;
 }
 
 .welcome-container-out {
@@ -66,7 +67,13 @@ a {
   -webkit-animation: bounce-7-out 1s cubic-bezier(0.28, 0.84, 0.42, 1);
   animation: bounce-7-out 1s cubic-bezier(0.28, 0.84, 0.42, 1);
   opacity: 0;
+  display: none;
   z-index: -100;
+  grid-row: 1 / -1;
+  grid-column: 1 / span 2;
+  width: 45%;
+  align-self: center;
+  justify-self: center;
 }
 
 .welcome-modal {
@@ -165,7 +172,19 @@ a {
   grid-row: 3 / span 1;
   grid-column: 1 / span 2;
   display: flex;
-  padding: 1rem;
+  border: 0.9rem solid rgba($tertiary-color, 0.7);
+  animation: glow 3000ms linear infinite 2000ms;
+
+  @keyframes glow {
+    40% {
+      border: 0.9rem solid rgba($tertiary-color-dark, 0.2);
+    }
+  }
+
+  &:hover {
+    animation: normal;
+    border: 0.9rem solid rgba($tertiary-color, 1);
+  }
 
   &__button {
     font-size: 1.4rem;
@@ -197,6 +216,11 @@ a {
   padding: 1rem;
   background-color: $quadrant-background;
   animation: $animation-fade-in;
+  transition: all 0.3s;
+  &:hover {
+    -webkit-box-shadow: $quadrant-box-shadow;
+    box-shadow: $quadrant-box-shadow;
+  }
 
   &__details {
     position: absolute;
@@ -231,12 +255,15 @@ a {
   width: 50vw;
   background: $quadrant-background;
   backdrop-filter: blur;
-  -webkit-box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
   animation: $animation-fade-in;
   animation-delay: 0.3s;
   opacity: 0;
   animation-fill-mode: forwards;
+  transition: all 0.3s;
+  &:hover {
+    -webkit-box-shadow: $quadrant-box-shadow;
+    box-shadow: $quadrant-box-shadow;
+  }
 }
 
 @keyframes fadeIn {
@@ -248,9 +275,29 @@ a {
   }
 }
 
-.chart:hover {
-  -webkit-box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.2);
+.heatmap {
+  height: 40vh;
+  width: 50vw;
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 1;
+  padding: 0 2rem;
+  background-color: $quadrant-background;
+  transition: all 0.3s;
+
+  position: relative;
+  &:hover {
+    -webkit-box-shadow: $quadrant-box-shadow;
+    box-shadow: $quadrant-box-shadow;
+  }
+
+  &__header {
+    position: absolute;
+    text-align: center;
+    top: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+  }
 }
 
 @-webkit-keyframes bounce-7 {
