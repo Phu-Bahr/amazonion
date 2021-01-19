@@ -24,142 +24,41 @@ body {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.2;
-  background-image: url(https://ik.imagekit.io/hawtariyzq/amazonion-background_LkMLGxdRmo.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 $primary-color: #ff9900;
 $secondary-color: #000000;
 $tertiary-color: #31c4f3;
+$tertiary-color-dark: #1f92b8;
 $tertiary-dark: #252021;
 $amazon-grey: #999999;
+$color-white: #ffffff;
+$quadrant-background: rgba($color-white, 0.75);
+$animation-fade-in: fadeIn 0.3s ease-in;
 
 a {
   color: inherit;
 }
 
 .container {
-  height: 90vh;
-  padding: 5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-//dropzone area
-.dropzone {
-  border: dotted 2px white;
-  padding: 2rem;
-  border-radius: 0 0 40px 40px;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &__header {
-    background-color: yellow;
-  }
-
-  &__description {
-    text-transform: uppercase;
-    font-size: 2.1vw;
-
-    span {
-      display: block;
-      text-align: center;
-    }
-  }
-}
-
-//chart dimensions
-.chart {
-  height: 60%;
-  width: 50%;
-  background: white;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  animation: fadeIn 1s ease-in;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.chart:hover {
-  -webkit-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-//chart buttons
-.chart-year-buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 4rem;
-  align-items: center;
-  justify-content: center;
-
-  &__button {
-    padding: 1rem;
-    border-radius: 1rem;
-
-    &:focus,
-    &:hover {
-      background-color: $primary-color;
-    }
-  }
-}
-
-//AUTO PREFIX THIS WHEN DONE
-.pie-chart {
-  height: 60%;
-  width: 50%;
-  position: relative;
-  animation: fadeIn 1s ease-in;
-
-  &__details {
-    position: absolute;
-    top: 49%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-    // This is important to preserve the chart interactivity
-    pointer-events: none;
-
-    &--header {
-      font-weight: 900;
-    }
-    &--number {
-      font-size: 9rem;
-      line-height: 0.9;
-    }
-    &--detail {
-      font-size: 1.3rem;
-    }
-  }
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 10vh;
+  background-image: url(https://ik.imagekit.io/hawtariyzq/amazonion-background_LkMLGxdRmo.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .welcome-container {
   -webkit-animation: bounce-7 1.4s cubic-bezier(0.28, 0.84, 0.42, 1);
   animation: bounce-7 1.4s cubic-bezier(0.28, 0.84, 0.42, 1);
+  grid-row: 1 / -1;
+  grid-column: 1 / span 2;
+  // height: 50%;
+  width: 45%;
+  align-self: center;
+  justify-self: center;
 }
 
 .welcome-container-out {
@@ -179,11 +78,12 @@ a {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  color: white;
-  border-radius: 40px;
+  color: $color-white;
+  border-radius: 4rem;
   background-color: rgba($tertiary-dark, 0.4);
   -webkit-box-shadow: 1rem 1rem 1.8rem #bebebe, -1rem -1rem 1.8rem #ffffff;
   box-shadow: 1rem 1rem 1.8rem #bebebe, -1rem -1rem 1.8rem #ffffff;
+  align-items: center;
 
   @supports (
     ((-webkit-backdrop-filter: blur(1rem)) or (backdrop-filter: blur(1rem)))
@@ -198,7 +98,7 @@ a {
     font-size: 5rem;
     text-align: center;
     padding: 1rem;
-    color: white;
+    color: $color-white;
   }
   &__mini-header {
     font-size: 3.5rem;
@@ -235,6 +135,124 @@ a {
   }
 }
 
+//dropzone area
+.dropzone {
+  border: dotted 2px $color-white;
+  padding: 2rem;
+  border-radius: 0 0 4rem 4rem;
+  width: 100%;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__header {
+  }
+
+  &__description {
+    text-transform: uppercase;
+    font-size: 2.1vw;
+
+    span {
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+//chart buttons
+.chart-year-buttons {
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 2;
+  display: flex;
+  padding: 1rem;
+
+  &__button {
+    font-size: 1.4rem;
+    flex: 1;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    border-bottom: rgb(132, 106, 41) solid 1px;
+    border-left: rgb(156, 126, 49) solid 1px;
+    border-right: rgb(156, 126, 49) solid 1px;
+    border-top: rgb(168, 135, 52) solid 1px;
+    background-color: rgba(240, 193, 75, 1);
+    transition: all 0.2s;
+
+    &:focus,
+    &:hover {
+      background-color: $tertiary-color-dark;
+      color: $color-white;
+      transform: scale(1.1);
+      border: $color-white solid 1px;
+    }
+  }
+}
+
+//AUTO PREFIX THIS WHEN DONE
+.pie-chart {
+  height: 50vh;
+  width: 50vw;
+  position: relative;
+  padding: 1rem;
+  background-color: $quadrant-background;
+  animation: $animation-fade-in;
+
+  &__details {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    // This is important to preserve the chart interactivity
+    pointer-events: none;
+
+    &--header {
+      font-weight: 900;
+    }
+    &--number {
+      font-size: 9rem;
+      line-height: 0.9;
+    }
+    &--detail {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+//chart dimensions
+.chart {
+  height: 50vh;
+  width: 50vw;
+  background: $quadrant-background;
+  backdrop-filter: blur;
+  -webkit-box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2);
+  animation: $animation-fade-in;
+  animation-delay: 0.3s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.chart:hover {
+  -webkit-box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.2);
+}
+
 @-webkit-keyframes bounce-7 {
   0% {
     -webkit-transform: scale(1, 1) translateY(0);
@@ -246,16 +264,16 @@ a {
     transform: scale(1.1, 0.9) translateY(0);
   }
   30% {
-    -webkit-transform: scale(0.9, 1.1) translateY(-100px);
-    transform: scale(0.9, 1.1) translateY(-100px);
+    -webkit-transform: scale(0.9, 1.1) translateY(-10rem);
+    transform: scale(0.9, 1.1) translateY(-10rem);
   }
   50% {
     -webkit-transform: scale(1.05, 0.95) translateY(0);
     transform: scale(1.05, 0.95) translateY(0);
   }
   57% {
-    -webkit-transform: scale(1, 1) translateY(-7px);
-    transform: scale(1, 1) translateY(-7px);
+    -webkit-transform: scale(1, 1) translateY(-0.7rem);
+    transform: scale(1, 1) translateY(-0.7rem);
   }
   64% {
     -webkit-transform: scale(1, 1) translateY(0);
@@ -279,16 +297,16 @@ a {
     transform: scale(1.1, 0.9) translateY(0);
   }
   30% {
-    -webkit-transform: scale(0.9, 1.1) translateY(-100px);
-    transform: scale(0.9, 1.1) translateY(-100px);
+    -webkit-transform: scale(0.9, 1.1) translateY(-10rem);
+    transform: scale(0.9, 1.1) translateY(-10rem);
   }
   50% {
     -webkit-transform: scale(1.05, 0.95) translateY(0);
     transform: scale(1.05, 0.95) translateY(0);
   }
   57% {
-    -webkit-transform: scale(1, 1) translateY(-7px);
-    transform: scale(1, 1) translateY(-7px);
+    -webkit-transform: scale(1, 1) translateY(-0.7rem);
+    transform: scale(1, 1) translateY(-0.7rem);
   }
   64% {
     -webkit-transform: scale(1, 1) translateY(0);
@@ -312,16 +330,16 @@ a {
     transform: scale(1.1, 0.9) translateY(0);
   }
   30% {
-    -webkit-transform: scale(0.9, 1.1) translateY(-100px);
-    transform: scale(0.9, 1.1) translateY(-100px);
+    -webkit-transform: scale(0.9, 1.1) translateY(-10rem);
+    transform: scale(0.9, 1.1) translateY(-10rem);
   }
   50% {
     -webkit-transform: scale(1.05, 0.95) translateY(0);
     transform: scale(1.05, 0.95) translateY(0);
   }
   57% {
-    -webkit-transform: scale(1, 1) translateY(-7px);
-    transform: scale(1, 1) translateY(-7px);
+    -webkit-transform: scale(1, 1) translateY(-0.7rem);
+    transform: scale(1, 1) translateY(-0.7rem);
   }
   64% {
     -webkit-transform: scale(1, 1) translateY(0);
@@ -345,16 +363,16 @@ a {
     transform: scale(1.1, 0.9) translateY(0);
   }
   30% {
-    -webkit-transform: scale(0.9, 1.1) translateY(-100px);
-    transform: scale(0.9, 1.1) translateY(-100px);
+    -webkit-transform: scale(0.9, 1.1) translateY(-10rem);
+    transform: scale(0.9, 1.1) translateY(-10rem);
   }
   50% {
     -webkit-transform: scale(1.05, 0.95) translateY(0);
     transform: scale(1.05, 0.95) translateY(0);
   }
   57% {
-    -webkit-transform: scale(1, 1) translateY(-7px);
-    transform: scale(1, 1) translateY(-7px);
+    -webkit-transform: scale(1, 1) translateY(-0.7rem);
+    transform: scale(1, 1) translateY(-0.7rem);
   }
   64% {
     -webkit-transform: scale(1, 1) translateY(0);
