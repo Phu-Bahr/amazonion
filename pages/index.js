@@ -62,8 +62,8 @@ export default function Home() {
             <MonthlyChart {...props} />
           </>
         )}
+        <section className='chart-year-buttons'>{displayYearList}</section>
       </main>
-      <section className='chart-year-buttons'>{displayYearList}</section>
     </>
   );
 }

@@ -67,12 +67,15 @@ export const CategoryChart = ({ data, year }) => {
     (x) => x.value == max
   );
 
-  let num = 2;
   return (
     <section className='pie-chart'>
       <ResponsivePie
+        theme={{
+          fontSize: 14,
+        }}
         data={categoriesPerYear(categoryData, year)}
-        // margin={{ top: 10, right: 200, bottom: 0, left: 0 }}
+        margin={{ top: 20, right: 0, bottom: 20, left: 0 }}
+        sortByValue
         innerRadius={0.6}
         padAngle={0.7}
         cornerRadius={3}
@@ -84,7 +87,7 @@ export const CategoryChart = ({ data, year }) => {
         radialLabelsLinkColor={{ from: 'color' }}
         radialLabelsLinkHorizontalLength={10}
         radialLabelsLinkDiagonalLength={10}
-        sliceLabelsSkipAngle={7}
+        sliceLabelsSkipAngle={6}
         sliceLabelsTextColor='#333333'
       />
       <div className='pie-chart__details'>
