@@ -31,7 +31,6 @@ export const MonthlyChart = ({ data, year }) => {
   const yearData = [
     {
       id: 'Month Total',
-
       data: filteredYear(coordinates, year),
     },
   ];
