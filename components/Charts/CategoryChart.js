@@ -1,13 +1,6 @@
 import { ResponsivePie } from '@nivo/pie';
 
 export const CategoryChart = ({ data, year }) => {
-  //   Based on year, give me reduced category of items. [{id: category, value: totalOfItemsPerCategory}]
-  // DONE 1. clean up category in util, lower case and take out underscores, quantity to whole number
-  // DONE 2. filter data to give only Date, category, item total, quantity
-  // DONE 3. from that filter reduce to each category, item total, quantity by year
-  // DONE 4. from that give me each category and item total * quantity, and year
-  // DONE 5. display data based on each year.
-
   //gives me new data [{Order Year, Category, Item Total, Quantity}]
   const categoryData =
     data &&
@@ -54,9 +47,6 @@ export const CategoryChart = ({ data, year }) => {
     const convertSumForPie =
       filteredByValue &&
       Object.entries(filteredByValue).map(([key, value]) => {
-        if (key == '') {
-          key = 'Misc';
-        }
         return {
           id: key,
           value: value,
