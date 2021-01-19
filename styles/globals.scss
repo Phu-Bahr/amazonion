@@ -122,10 +122,12 @@ a {
   }
 }
 
+//AUTO PREFIX THIS WHEN DONE
 .pie-chart {
   height: 60%;
   width: 50%;
   position: relative;
+  animation: fadeIn 1s ease-in;
 
   &__details {
     // background-color: blue;

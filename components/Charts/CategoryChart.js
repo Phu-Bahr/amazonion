@@ -26,21 +26,29 @@ export const CategoryChart = ({ data, year }) => {
 
   //convert to data pie can read
   const categoriesPerYear = (array, chosenYear) => {
-    //filter by year by year
-    const pickedYear =
-      array && array.filter((yr) => yr['Order Year'] === chosenYear);
+    //filter by year, then reduce all categories by quantity
+    const sumQuantityPerCategory =
+      array &&
+      array
+        .filter((yr) => yr['Order Year'] === chosenYear)
+        .reduce((objectHolder, currentObj) => {
+          objectHolder[currentObj['Category']] =
+            objectHolder[currentObj['Category']] + currentObj['Quantity'] ||
+            currentObj['Quantity'];
+          return objectHolder;
+        }, {});
 
-    //reduced by id and values
-    const sumQuantityPerCategory = pickedYear.reduce((acc, cur) => {
-      acc[cur['Category']] =
-        acc[cur['Category']] + cur['Quantity'] || cur['Quantity'];
-      return acc;
-    }, {});
-
-    //goes through each object, using key/value filter out values greater than 1
-    const filteredByValue = Object.fromEntries(
-      Object.entries(sumQuantityPerCategory).filter(([key, value]) => value > 1)
-    );
+    //dealing with only single category years
+    const filteredByValue =
+      //if atleast 1 category reduced is greater than 1
+      Object.entries(sumQuantityPerCategory).some(([key, value]) => value > 1)
+        ? //goes through each object, using key/value filter out values greater than 1
+          Object.fromEntries(
+            Object.entries(sumQuantityPerCategory).filter(
+              ([key, value]) => value > 1
+            )
+          )
+        : sumQuantityPerCategory;
 
     // taking reduction and conforming to objects with id and value format.
     const convertSumForPie =
@@ -59,23 +67,22 @@ export const CategoryChart = ({ data, year }) => {
   };
 
   //find highest number category occurred
-  const max =
-    categoriesPerYear(categoryData, year) &&
-    Math.max.apply(
-      Math,
-      categoriesPerYear(categoryData, year).map((o) => o.value)
-    );
+  const max = Math.max.apply(
+    Math,
+    categoriesPerYear(categoryData, year).map((o) => o.value)
+  );
 
   //find highest category occured
-  const popularCategory =
-    categoriesPerYear(categoryData, year) &&
-    categoriesPerYear(categoryData, year).filter((x) => x.value == max);
+  const popularCategory = categoriesPerYear(categoryData, year).filter(
+    (x) => x.value == max
+  );
 
+  let num = 2;
   return (
     <section className='pie-chart'>
       <ResponsivePie
         data={categoriesPerYear(categoryData, year)}
-        // margin={{ top: 10, right: 100, bottom: 0, left: 0 }}
+        // margin={{ top: 10, right: 200, bottom: 0, left: 0 }}
         innerRadius={0.6}
         padAngle={0.7}
         cornerRadius={3}
