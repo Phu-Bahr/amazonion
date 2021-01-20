@@ -89,6 +89,7 @@ export const CategoryChart = ({ data, year }) => {
         radialLabelsLinkDiagonalLength={10}
         sliceLabelsSkipAngle={6}
         sliceLabelsTextColor='#333333'
+        enableSliceLabels={false}
       />
       <div className='pie-chart__details'>
         <span className='pie-chart__details--header'>Most Popular</span>
