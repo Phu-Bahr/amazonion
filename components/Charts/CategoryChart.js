@@ -71,7 +71,7 @@ export const CategoryChart = ({ data, year }) => {
     <section className='pie-chart'>
       <ResponsivePie
         theme={{
-          fontSize: 14,
+          fontSize: 12,
         }}
         data={categoriesPerYear(categoryData, year)}
         margin={{ top: 20, right: 0, bottom: 20, left: 0 }}

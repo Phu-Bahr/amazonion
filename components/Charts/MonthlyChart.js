@@ -78,7 +78,7 @@ export const MonthlyChart = ({ data, year }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: `Months for ${year}`,
+          legend: `Total Spent per Month - ${year}`,
           legendOffset: 36,
           legendPosition: 'middle',
         }}
@@ -97,7 +97,8 @@ export const MonthlyChart = ({ data, year }) => {
         motionConfig={'wobbly'}
         enablePointLabel={true}
         enableArea={true}
-        areaOpacity={0.7}
+        areaOpacity={0.4}
+        colors={'#ff9900'}
         enableGridX={false}
         pointSize={10}
         pointColor={{ theme: 'background' }}

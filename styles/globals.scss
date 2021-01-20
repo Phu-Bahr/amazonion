@@ -119,7 +119,7 @@ a {
   }
   &__steps {
     padding: 1rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
 
     list-style-type: none;
     &::before {
@@ -219,19 +219,19 @@ a {
   transition: all 0.3s;
   &:hover {
     -webkit-box-shadow: $quadrant-box-shadow;
-    box-shadow: $quadrant-box-shadow;
+    // box-shadow: $quadrant-box-shadow;
+    box-shadow: 0 0 3rem 0.5rem rgba(black, 1);
   }
 
   &__details {
     position: absolute;
-    top: 50%;
+    top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     text-align: center;
     // This is important to preserve the chart interactivity
     pointer-events: none;
@@ -240,7 +240,7 @@ a {
       font-weight: 900;
     }
     &--number {
-      font-size: 9rem;
+      font-size: 8.5rem;
       line-height: 0.9;
     }
     &--detail {
@@ -296,7 +296,7 @@ a {
     top: 2.5rem;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
 
