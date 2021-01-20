@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import { CategoryChart } from '../components/Charts/CategoryChart';
-import HeatMapChart from '../components/Charts/HeatMapChart';
+import CalendarChart from '../components/Charts/CalendarChart';
 import { MonthlyChart } from '../components/Charts/MonthlyChart';
+import { Summary } from '../components/Charts/Summary';
 import { WelcomeModal } from '../components/Welcome/WelcomeComponent';
 
 export default function Home() {
@@ -61,7 +62,8 @@ export default function Home() {
           <>
             <CategoryChart {...props} />
             <MonthlyChart {...props} />
-            <HeatMapChart {...props} />
+            <CalendarChart {...props} />
+            <Summary {...props} />
             <section className='chart-year-buttons'>{displayYearList}</section>
           </>
         )}

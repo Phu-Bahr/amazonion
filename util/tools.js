@@ -21,7 +21,7 @@ export const convertData = (array) => {
     ...x,
     'Order Date': dayjs(x['Order Date']).format('MMM/YYYY'),
     'Order Year': dayjs(x['Order Date']).format('YYYY'),
-    'Heat Date': dayjs(x['Order Date']).format('YYYY-MM-DD'),
+    'Calendar Date': dayjs(x['Order Date']).format('YYYY-MM-DD'),
     'Item Total': parseFloat(x['Item Total'].replace(/[^0-9.-]+/g, '')),
     Quantity: parseFloat(x['Quantity'].replace(/[^0-9.-]+/g, '')),
     Category:

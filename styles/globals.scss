@@ -218,7 +218,7 @@ a {
   animation: $animation-fade-in;
   transition: all 0.3s;
   &:hover {
-    -webkit-box-shadow: $quadrant-box-shadow;
+    // -webkit-box-shadow: $quadrant-box-shadow;
     // box-shadow: $quadrant-box-shadow;
     box-shadow: 0 0 3rem 0.5rem rgba(black, 1);
   }
@@ -275,7 +275,7 @@ a {
   }
 }
 
-.heatmap {
+.calendar {
   height: 40vh;
   width: 50vw;
   grid-row: 2 / span 1;
@@ -293,7 +293,7 @@ a {
   &__header {
     position: absolute;
     text-align: center;
-    top: 2.5rem;
+    top: 11%;
     left: 50%;
     transform: translateX(-50%);
     font-size: 2.5rem;
