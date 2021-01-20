@@ -254,9 +254,8 @@ a {
   height: 50vh;
   width: 50vw;
   background: $quadrant-background;
-  backdrop-filter: blur;
   animation: $animation-fade-in;
-  animation-delay: 0.3s;
+  animation-delay: 0.2s;
   opacity: 0;
   animation-fill-mode: forwards;
   transition: all 0.3s;
@@ -283,7 +282,11 @@ a {
   padding: 0 2rem;
   background-color: $quadrant-background;
   transition: all 0.3s;
-
+  animation: $animation-fade-in;
+  animation-delay: 0.8s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  transition: all 0.3s;
   position: relative;
   &:hover {
     -webkit-box-shadow: $quadrant-box-shadow;
@@ -297,6 +300,30 @@ a {
     left: 50%;
     transform: translateX(-50%);
     font-size: 2.5rem;
+  }
+}
+
+.summary {
+  padding: 1rem;
+  background-color: $quadrant-background;
+  animation: $animation-fade-in;
+  animation-delay: 0.5s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  transition: all 0.3s;
+  &:hover {
+    -webkit-box-shadow: $quadrant-box-shadow;
+    box-shadow: $quadrant-box-shadow;
+  }
+  &__header {
+    background-color: blue;
+  }
+
+  &__list {
+    background-attachment: yellow;
+    &--item {
+      background-color: red;
+    }
   }
 }
 
