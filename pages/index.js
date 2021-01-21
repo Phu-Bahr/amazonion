@@ -69,9 +69,11 @@ export default function Home() {
           </>
         )}
       </main>
-      <section className='table-container'>
-        <DataTable {...props} />
-      </section>
+      {data.length > 0 && (
+        <section className='table-container'>
+          <DataTable {...props} />
+        </section>
+      )}
     </>
   );
 }
