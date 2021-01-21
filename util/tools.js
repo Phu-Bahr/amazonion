@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import AnimatedNumber from 'animated-number-react';
 
 //converts Order Date from 1/2/19 => 1/2019, Item Total from '$150.45' to 150.45
 export const convertData = (array) => {
@@ -110,4 +111,11 @@ export const countPerItem = (array, columnName) => {
 //finds largest value in single object
 export const largestItem = (obj) => {
   return Object.keys(obj).reduce((a, b) => (obj[a] > obj[b] ? a : b));
+};
+
+export const NumberAnimate = (props, decimal = 0) => {
+  let formatValue = (value) => value.toFixed(decimal);
+  return (
+    <AnimatedNumber value={props} formatValue={formatValue} duration={500} />
+  );
 };

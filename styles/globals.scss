@@ -29,6 +29,7 @@ body {
 $primary-color: #ff9900;
 $secondary-color: #000000;
 $tertiary-color: #31c4f3;
+$tertiary-color-light: #84d8f4;
 $tertiary-color-dark: #1f92b8;
 $tertiary-dark: #252021;
 $amazon-grey: #999999;
@@ -63,10 +64,9 @@ a {
 }
 
 .welcome-container-out {
-  position: absolute;
   -webkit-animation: bounce-7-out 1s cubic-bezier(0.28, 0.84, 0.42, 1);
   animation: bounce-7-out 1s cubic-bezier(0.28, 0.84, 0.42, 1);
-  opacity: 0;
+  opacity: 1;
   display: none;
   z-index: -100;
   grid-row: 1 / -1;
@@ -74,6 +74,7 @@ a {
   width: 45%;
   align-self: center;
   justify-self: center;
+  transition: all 0.2s;
 }
 
 .welcome-modal {
@@ -143,17 +144,23 @@ a {
 }
 
 //dropzone area
+
+.dropzone-container {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  width: 90%;
+}
 .dropzone {
   border: dotted 2px $color-white;
   padding: 2rem;
-  border-radius: 0 0 4rem 4rem;
+  border-radius: 1rem;
   width: 100%;
+  transition: all 0.3s;
 
   &:hover {
     cursor: pointer;
-  }
-
-  &__header {
+    color: $primary-color;
+    border-color: $primary-color;
   }
 
   &__description {
@@ -167,7 +174,6 @@ a {
   }
 }
 
-//chart buttons
 .chart-year-buttons {
   grid-row: 3 / span 1;
   grid-column: 1 / span 2;
@@ -175,38 +181,51 @@ a {
   flex-wrap: wrap;
   border: 0.9rem solid rgba($tertiary-color, 0.9);
   animation: glow 2500ms linear infinite 2000ms;
-
-  @keyframes glow {
-    40% {
-      border: 0.9rem solid rgba($tertiary-color-dark, 0.1);
-    }
-  }
-
-  &:hover {
-    animation: normal;
-    border: 0.9rem solid rgba($tertiary-color, 1);
-  }
+  transition: all 0.2s;
 
   &__button {
-    font-size: 1.4rem;
     flex: 1;
+    position: relative;
+    z-index: 1; /* matters! */
+    font-size: 1.6rem;
     padding: 1rem;
     border-radius: 0.3rem;
     border-bottom: rgb(132, 106, 41) solid 1px;
     border-left: rgb(156, 126, 49) solid 1px;
     border-right: rgb(156, 126, 49) solid 1px;
     border-top: rgb(168, 135, 52) solid 1px;
-    background-color: rgba(240, 193, 75, 1);
+    background: linear-gradient(to bottom, #f5c07f, #ed9323);
     transition: all 0.2s;
-
-    &:focus,
-    &:hover {
-      background-color: $tertiary-color-dark;
-      color: $color-white;
-      transform: scale(1.1);
-      border: $color-white solid 1px;
-      cursor: pointer;
-    }
+  }
+  &__button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      $tertiary-color-light,
+      $tertiary-color
+    );
+    opacity: 0;
+    transition: all 0.2s;
+    z-index: -1;
+  }
+  &__button:hover::before,
+  &__button:focus::before {
+    opacity: 1;
+    border: $color-white solid 1px;
+  }
+  &__button:hover,
+  &__button:focus {
+    color: $color-white;
+    cursor: pointer;
+    z-index: 2;
+  }
+  &:hover {
+    animation: none;
   }
 }
 
@@ -354,6 +373,10 @@ a {
     flex-direction: column;
     justify-content: space-evenly;
     &--yearly {
+      span {
+        background-color: rgba($primary-color, 0.2);
+        border-radius: 5px;
+      }
     }
     &--overall {
     }
@@ -524,5 +547,11 @@ a {
   100% {
     -webkit-backdrop-filter: blur(1rem);
     backdrop-filter: blur(1rem);
+  }
+}
+
+@keyframes glow {
+  40% {
+    border: 0.9rem solid rgba($tertiary-color-dark, 0.1);
   }
 }

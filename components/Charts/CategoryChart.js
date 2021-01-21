@@ -1,5 +1,5 @@
 import { ResponsivePie } from '@nivo/pie';
-import { sumColumn, filteredYear } from '../../util/tools';
+import { sumColumn, filteredYear, NumberAnimate } from '../../util/tools';
 
 export const CategoryChart = ({ data, year }) => {
   //gives me new data [{Order Year, Category, Item Total, Quantity}]
@@ -98,14 +98,16 @@ export const CategoryChart = ({ data, year }) => {
       <div className='pie-chart__details'>
         <span className='pie-chart__details--header'>Most Popular</span>
         <span className='pie-chart__details--header'>Category</span>
-        <span className='pie-chart__details--number'>{max}</span>
+        <span className='pie-chart__details--number'>{NumberAnimate(max)}</span>
         <span className='pie-chart__details--detail'>
           {popularCategory[0] && popularCategory[0]['id']}
         </span>
       </div>
       <div className='total-items'>
         <span className='total-items__ast'>*NOT including single buys.</span>
-        <span className='total-items__total'>Total Items: {totalItems}</span>
+        <span className='total-items__total'>
+          Total Items: {NumberAnimate(totalItems)}
+        </span>
       </div>
     </section>
   );

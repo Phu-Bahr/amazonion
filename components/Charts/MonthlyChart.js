@@ -1,13 +1,4 @@
 import { ResponsiveLine } from '@nivo/line';
-import {
-  filteredYear,
-  getYearList,
-  maxTotalAmount,
-  itemOfTotal,
-  commaSep,
-  minTotalAmount,
-  sumColumn,
-} from '../../util/tools';
 
 export const MonthlyChart = ({ data, year }) => {
   //sum up each month per year Jan/2011: $500.00, Jan/2012: $400.00
