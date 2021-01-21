@@ -33,7 +33,7 @@ $tertiary-color-dark: #1f92b8;
 $tertiary-dark: #252021;
 $amazon-grey: #999999;
 $color-white: #ffffff;
-$quadrant-background: rgba($color-white, 0.75);
+$quadrant-background: rgba($color-white, 0.8);
 $quadrant-box-shadow: 0 0 3rem 0.5rem rgba($primary-color, 0.8);
 $animation-fade-in: fadeIn 0.3s ease-in;
 
@@ -172,12 +172,13 @@ a {
   grid-row: 3 / span 1;
   grid-column: 1 / span 2;
   display: flex;
-  border: 0.9rem solid rgba($tertiary-color, 0.7);
-  animation: glow 3000ms linear infinite 2000ms;
+  flex-wrap: wrap;
+  border: 0.9rem solid rgba($tertiary-color, 0.9);
+  animation: glow 2500ms linear infinite 2000ms;
 
   @keyframes glow {
     40% {
-      border: 0.9rem solid rgba($tertiary-color-dark, 0.2);
+      border: 0.9rem solid rgba($tertiary-color-dark, 0.1);
     }
   }
 
@@ -204,6 +205,7 @@ a {
       color: $color-white;
       transform: scale(1.1);
       border: $color-white solid 1px;
+      cursor: pointer;
     }
   }
 }
@@ -220,7 +222,8 @@ a {
   &:hover {
     // -webkit-box-shadow: $quadrant-box-shadow;
     // box-shadow: $quadrant-box-shadow;
-    box-shadow: 0 0 3rem 0.5rem rgba(black, 1);
+    // box-shadow: 0 0 3rem 0.5rem rgba(black, 1);
+    background-color: rgba($color-white, 1);
   }
 
   &__details {
@@ -260,8 +263,9 @@ a {
   animation-fill-mode: forwards;
   transition: all 0.3s;
   &:hover {
-    -webkit-box-shadow: $quadrant-box-shadow;
-    box-shadow: $quadrant-box-shadow;
+    // -webkit-box-shadow: $quadrant-box-shadow;
+    // box-shadow: $quadrant-box-shadow;
+    background-color: rgba($color-white, 1);
   }
 }
 
@@ -278,7 +282,7 @@ a {
   height: 40vh;
   width: 50vw;
   grid-row: 2 / span 1;
-  grid-column: 1 / span 1;
+  grid-column: 2 / span 1;
   padding: 0 2rem;
   background-color: $quadrant-background;
   transition: all 0.3s;
@@ -288,8 +292,9 @@ a {
   animation-fill-mode: forwards;
   position: relative;
   &:hover {
-    -webkit-box-shadow: $quadrant-box-shadow;
-    box-shadow: $quadrant-box-shadow;
+    // -webkit-box-shadow: $quadrant-box-shadow;
+    // box-shadow: $quadrant-box-shadow;
+    background-color: rgba($color-white, 1);
   }
 
   &__header {
@@ -303,18 +308,39 @@ a {
 }
 
 .summary {
-  grid-row: 2 / span 1;
-  grid-column: 2 / span 1;
-  padding: 1rem;
+  padding: 2rem;
   background-color: $quadrant-background;
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 1;
   animation: $animation-fade-in;
   animation-delay: 0.5s;
-  opacity: 0;
   animation-fill-mode: forwards;
+  opacity: 0;
   transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+
   &:hover {
-    -webkit-box-shadow: $quadrant-box-shadow;
-    box-shadow: 0 0 3rem 0.5rem rgba(black, 0.3);
+    // -webkit-box-shadow: $quadrant-box-shadow;
+    // box-shadow: 0 0 3rem 0.5rem rgba(black, 0.3);
+    background-color: rgba($color-white, 1);
+  }
+  &__heading {
+    align-self: center;
+    padding-bottom: 1rem;
+    &--span {
+      color: $primary-color;
+    }
+  }
+  &__details {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    &--yearly {
+    }
+    &--overall {
+    }
   }
 }
 
