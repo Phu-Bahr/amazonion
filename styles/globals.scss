@@ -212,10 +212,11 @@ a {
 
 //AUTO PREFIX THIS WHEN DONE
 .pie-chart {
+  //height 50vh because percentage breaks nivo
   height: 50vh;
   width: 50vw;
   position: relative;
-  padding: 1rem;
+  padding: 2rem;
   background-color: $quadrant-background;
   animation: $animation-fade-in;
   transition: all 0.3s;
@@ -249,6 +250,21 @@ a {
     &--detail {
       font-size: 1.3rem;
     }
+    &--total {
+      position: absolute;
+      left: 350%;
+      top: 180%;
+    }
+  }
+}
+
+.total-items {
+  display: flex;
+  justify-content: space-between;
+
+  &__ast {
+  }
+  &__total {
   }
 }
 
@@ -336,7 +352,7 @@ a {
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     &--yearly {
     }
     &--overall {

@@ -1,4 +1,13 @@
 import { ResponsiveLine } from '@nivo/line';
+import {
+  filteredYear,
+  getYearList,
+  maxTotalAmount,
+  itemOfTotal,
+  commaSep,
+  minTotalAmount,
+  sumColumn,
+} from '../../util/tools';
 
 export const MonthlyChart = ({ data, year }) => {
   //sum up each month per year Jan/2011: $500.00, Jan/2012: $400.00
@@ -56,6 +65,8 @@ export const MonthlyChart = ({ data, year }) => {
     return Math.ceil(curMaxNum / padding) * padding;
   };
 
+  console.log(maxSpentPerYear.y);
+
   return (
     <section className='chart'>
       <ResponsiveLine
@@ -78,7 +89,7 @@ export const MonthlyChart = ({ data, year }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: `Total Spent per Month - ${year}`,
+          legend: `Total Spent per Month - Max Spent $${maxSpentPerYear.y} in ${year}`,
           legendOffset: 36,
           legendPosition: 'middle',
         }}

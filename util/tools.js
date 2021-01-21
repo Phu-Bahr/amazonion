@@ -11,8 +11,13 @@ export const convertData = (array) => {
     'Order Date': dayjs(x['Order Date']).format('MMM/YYYY'),
     'Order Year': dayjs(x['Order Date']).format('YYYY'),
     'Calendar Date': dayjs(x['Order Date']).format('YYYY-MM-DD'),
+    'Day of Week': dayjs(x['Order Date']).day(),
     'Item Total': cleanNumber(x['Item Total']),
     'Purchase Price Per Unit': cleanNumber(x['Purchase Price Per Unit']),
+    'List Price Per Unit':
+      cleanNumber(x['List Price Per Unit']) == 0
+        ? cleanNumber(x['Purchase Price Per Unit'])
+        : cleanNumber(x['List Price Per Unit']),
     Quantity: cleanNumber(x['Quantity']),
     Category:
       cleanString(x['Category']) == '' ? 'Misc' : cleanString(x['Category']),
@@ -67,6 +72,42 @@ export const maxTotalAmount = (array, columnName) => {
 };
 
 //takes in array, searches through column and returns amount that matches amount argument
-export const maxTotalItem = (array, columnName, amount) => {
+export const itemOfTotal = (array, columnName, amount) => {
   return array.filter((x) => x[columnName] == amount);
+};
+
+export const minTotalAmount = (array, columnName) => {
+  let filterZero = array.filter((x) => x[columnName] > 0);
+
+  return commaSep(
+    Math.min
+      .apply(
+        Math,
+        filterZero.map((element) => element[columnName])
+      )
+      .toFixed(2)
+  );
+};
+
+//sums up array of objects returns columnName: totalAmount
+export const sumColumn = (array, columnName) => {
+  return array.reduce((a, b) => ({
+    [columnName]: a[columnName] + b[columnName],
+  }))[columnName];
+};
+
+//sums up each type of value returns object of summed up values {value: count}
+export const countPerItem = (array, columnName) => {
+  return (
+    array &&
+    array.reduce((acc, cur) => {
+      acc[cur[columnName]] = acc[cur[columnName]] + 1 || 1;
+      return acc;
+    }, {})
+  );
+};
+
+//finds largest value in single object
+export const largestItem = (obj) => {
+  return Object.keys(obj).reduce((a, b) => (obj[a] > obj[b] ? a : b));
 };

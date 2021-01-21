@@ -1,9 +1,14 @@
+import dayjs from 'dayjs';
 import {
   filteredYear,
   getYearList,
   maxTotalAmount,
-  maxTotalItem,
+  itemOfTotal,
   commaSep,
+  minTotalAmount,
+  sumColumn,
+  countPerItem,
+  largestItem,
 } from '../../util/tools';
 
 export const Summary = ({ data, year }) => {
@@ -11,18 +16,10 @@ export const Summary = ({ data, year }) => {
 
   const totalYears = getYearList(data).length;
 
+  ////////////////yearly
   //adds up all the item totals based on year filter
   const maxSpentPerYear = commaSep(
     filteredYear(data, year)
-      .reduce((a, b) => ({
-        'Item Total': a['Item Total'] + b['Item Total'],
-      }))
-      ['Item Total'].toFixed(2)
-  );
-
-  //iterates through all the item totals based on data array
-  const totalSpent = commaSep(
-    data
       .reduce((a, b) => ({
         'Item Total': a['Item Total'] + b['Item Total'],
       }))
@@ -34,10 +31,49 @@ export const Summary = ({ data, year }) => {
     'Purchase Price Per Unit'
   );
 
-  const mostExpensiveItem = maxTotalItem(
+  const mostExpensiveItem = itemOfTotal(
     filteredYear(data, year),
     'Purchase Price Per Unit',
     mostExpensiveItemTotal
+  )[0]['Title'];
+
+  const cheapestItemTotal = minTotalAmount(
+    filteredYear(data, year),
+    'Purchase Price Per Unit'
+  );
+
+  const cheapestItem = itemOfTotal(
+    filteredYear(data, year),
+    'Purchase Price Per Unit',
+    cheapestItemTotal
+  )[0]['Title'];
+
+  const yearlyAverageSaved = () => {
+    let listPriceYear = sumColumn(
+      filteredYear(data, year),
+      'List Price Per Unit'
+    );
+    let purchasePriceYear = sumColumn(
+      filteredYear(data, year),
+      'Purchase Price Per Unit'
+    );
+    let average = ((listPriceYear - purchasePriceYear) / listPriceYear) * 100;
+
+    return average.toFixed(0);
+  };
+
+  const maxDayYearly = parseInt(
+    largestItem(countPerItem(filteredYear(data, year), 'Day of Week'))
+  );
+
+  //////////////////////// all time
+  //iterates through all the item totals based on data array
+  const totalSpent = commaSep(
+    data
+      .reduce((a, b) => ({
+        'Item Total': a['Item Total'] + b['Item Total'],
+      }))
+      ['Item Total'].toFixed(2)
   );
 
   const allTimeExpensiveItemTotal = maxTotalAmount(
@@ -45,11 +81,41 @@ export const Summary = ({ data, year }) => {
     'Purchase Price Per Unit'
   );
 
-  const allTimeExpensiveItem = maxTotalItem(
+  const allTimeExpensiveItem = itemOfTotal(
     data,
     'Purchase Price Per Unit',
     allTimeExpensiveItemTotal
+  )[0]['Title'];
+
+  const allTimeCheapestItemTotal = minTotalAmount(
+    data,
+    'Purchase Price Per Unit'
   );
+
+  const allTimeCheapestItem = itemOfTotal(
+    data,
+    'Purchase Price Per Unit',
+    allTimeCheapestItemTotal
+  )[0]['Title'];
+
+  const allTimeAverageSaved = () => {
+    let listPrice = sumColumn(data, 'List Price Per Unit');
+    let purchasePrice = sumColumn(data, 'Purchase Price Per Unit');
+    let average = ((listPrice - purchasePrice) / listPrice) * 100;
+
+    return average.toFixed(0);
+  };
+
+  const maxDay = parseInt(largestItem(countPerItem(data, 'Day of Week')));
+  const daysOfWeek = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
 
   return (
     <section className='summary'>
@@ -60,15 +126,19 @@ export const Summary = ({ data, year }) => {
         <p className='summary__details--yearly'>
           Hi {buyerName}, you have quite the spending habit. In {year}, you
           spent a whopping total of ${maxSpentPerYear}. Your big ticket item was{' '}
-          <em>{mostExpensiveItem[0]['Title']}</em>, for $
-          {mostExpensiveItemTotal}.
+          <em>{mostExpensiveItem}</em>, for ${mostExpensiveItemTotal}. Your
+          cheapest item was {cheapestItem} for ${cheapestItemTotal}. Saved on
+          average {yearlyAverageSaved()}% based on List vs Purchase Price. You
+          like to buy on {daysOfWeek[maxDayYearly]}
         </p>
 
         <p className='summary__details--overall'>
           Overall, you spent a total of ${totalSpent} on amazon products within
           the last {totalYears} years. Biggest ticket was{' '}
-          <em>{allTimeExpensiveItem[0]['Title']}</em> for $
-          {allTimeExpensiveItemTotal}
+          <em>{allTimeExpensiveItem}</em> for ${allTimeExpensiveItemTotal}.
+          Cheapest, {allTimeCheapestItem} for ${allTimeCheapestItemTotal}. You
+          saved an average of {allTimeAverageSaved()}% based on List vs Purchase
+          Price. You like to buy things on {daysOfWeek[maxDay]}.
         </p>
       </div>
     </section>
