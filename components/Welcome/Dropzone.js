@@ -14,7 +14,6 @@ export const Dropzone = ({ handleNewData, handleYearList }) => {
     reader.onload = () => {
       //here is where you use papaparse, header true to make first row of csv file as property keys
       const csvData = parse(reader.result, { header: true });
-      console.log(csvData);
       handleNewData(convertData(csvData));
       handleYearList(getYearList(convertData(csvData)));
     };

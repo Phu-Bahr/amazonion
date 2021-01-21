@@ -70,7 +70,6 @@ export const CategoryChart = ({ data, year }) => {
 
   const totalItems = sumColumn(filteredYear(data, year), 'Quantity');
 
-  console.log('totes items', totalItems);
   return (
     <section className='pie-chart'>
       <ResponsivePie

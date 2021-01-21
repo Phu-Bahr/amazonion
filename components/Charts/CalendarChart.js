@@ -3,8 +3,6 @@ import dayjs from 'dayjs';
 import { NumberAnimate } from '../../util/tools';
 
 export const CalendarChart = ({ data, year }) => {
-  console.log(data[0]);
-
   const calendarData =
     data &&
     data.map((item) => {

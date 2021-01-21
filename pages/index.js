@@ -4,6 +4,7 @@ import { CategoryChart } from '../components/Charts/CategoryChart';
 import CalendarChart from '../components/Charts/CalendarChart';
 import { MonthlyChart } from '../components/Charts/MonthlyChart';
 import { Summary } from '../components/Charts/Summary';
+import { DataTable } from '../components/Charts/MaterialTable';
 import { WelcomeModal } from '../components/Welcome/WelcomeComponent';
 
 export default function Home() {
@@ -68,6 +69,9 @@ export default function Home() {
           </>
         )}
       </main>
+      <section className='table-container'>
+        <DataTable {...props} />
+      </section>
     </>
   );
 }
