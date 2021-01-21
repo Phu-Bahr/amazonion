@@ -56,8 +56,6 @@ export const MonthlyChart = ({ data, year }) => {
     return Math.ceil(curMaxNum / padding) * padding;
   };
 
-  console.log(maxSpentPerYear.y);
-
   return (
     <section className='chart'>
       <ResponsiveLine

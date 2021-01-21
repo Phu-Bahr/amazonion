@@ -10,6 +10,7 @@ export const convertData = (array) => {
   let convertedData = newArray.map((x) => ({
     ...x,
     'Order Date': dayjs(x['Order Date']).format('MMM/YYYY'),
+    'Table Date': dayjs(x['Order Date']).format('MM/DD/YYYY'),
     'Order Year': dayjs(x['Order Date']).format('YYYY'),
     'Calendar Date': dayjs(x['Order Date']).format('YYYY-MM-DD'),
     'Day of Week': dayjs(x['Order Date']).day(),
