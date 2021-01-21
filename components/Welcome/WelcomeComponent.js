@@ -38,11 +38,13 @@ export const WelcomeModal = ({ handleNewData, handleYearList, data }) => {
           </li>
         </ul>
 
-        <Dropzone
-          handleNewData={handleNewData}
-          handleYearList={handleYearList}
-          data={data}
-        />
+        <div className='dropzone-container'>
+          <Dropzone
+            handleNewData={handleNewData}
+            handleYearList={handleYearList}
+            data={data}
+          />
+        </div>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@ import { parse } from 'papaparse';
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { convertData, getYearList } from '../../util/tools';
+import { useMemo } from 'react';
 
 export const Dropzone = ({ handleNewData, handleYearList }) => {
   //when you drop file, dropzone gives you acceptedFiles object
@@ -22,13 +23,32 @@ export const Dropzone = ({ handleNewData, handleYearList }) => {
     acceptedFiles.forEach((file) => reader.readAsBinaryString(file));
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const {
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    isDragAccept,
+    isDragReject,
+  } = useDropzone({
     onDrop,
     accept: 'text/csv',
   });
 
+  //dragging file over dnd actions
+  const activeStyle = {
+    borderColor: '#ff9900',
+    color: '#ff9900',
+  };
+
+  const style = useMemo(
+    () => ({
+      ...(isDragActive ? activeStyle : {}),
+    }),
+    [isDragActive, isDragReject, isDragAccept]
+  );
+
   return (
-    <div className='dropzone' {...getRootProps()}>
+    <div className='dropzone' {...getRootProps({ style })}>
       <input {...getInputProps()} />
       <p className='dropzone__description'>
         <span>Drag 'n' Drop a file here</span>
