@@ -1,18 +1,18 @@
-import { filteredYear, CommaFormatted, getYearList } from '../../util/tools';
+import {
+  filteredYear,
+  getYearList,
+  maxTotalAmount,
+  maxTotalItem,
+  commaSep,
+} from '../../util/tools';
 
 export const Summary = ({ data, year }) => {
-  //  incase there's more than 1 buyer, choose bigger buyer
-  // const buyerName =
-  //   data &&
-  //   data.reduce((acc, cur) => {
-  //     acc[cur['Buyer Name']] =
-  //       acc[cur['Buyer Name']] + cur['Quantity'] || cur['Quantity'];
-  //     return acc;
-  //   }, {});
-
   const buyerName = data && data[0]['Buyer Name'].split(' ').shift();
 
-  const maxSpentPerYear = CommaFormatted(
+  const totalYears = getYearList(data).length;
+
+  //adds up all the item totals based on year filter
+  const maxSpentPerYear = commaSep(
     filteredYear(data, year)
       .reduce((a, b) => ({
         'Item Total': a['Item Total'] + b['Item Total'],
@@ -20,7 +20,8 @@ export const Summary = ({ data, year }) => {
       ['Item Total'].toFixed(2)
   );
 
-  const totalSpent = CommaFormatted(
+  //iterates through all the item totals based on data array
+  const totalSpent = commaSep(
     data
       .reduce((a, b) => ({
         'Item Total': a['Item Total'] + b['Item Total'],
@@ -28,33 +29,48 @@ export const Summary = ({ data, year }) => {
       ['Item Total'].toFixed(2)
   );
 
-  const totalYears = getYearList(data).length;
-
-  //find highest number category occurred
-  const mostExpensiveItemTotal = Math.max.apply(
-    Math,
-    filteredYear(data, year).map((o) => o['Item Total'])
+  const mostExpensiveItemTotal = maxTotalAmount(
+    filteredYear(data, year),
+    'Purchase Price Per Unit'
   );
 
-  //find highest category occured
-  const mostExpensiveItem = filteredYear(data, year).filter(
-    (x) => x['Item Total'] == mostExpensiveItemTotal
+  const mostExpensiveItem = maxTotalItem(
+    filteredYear(data, year),
+    'Purchase Price Per Unit',
+    mostExpensiveItemTotal
   );
 
-  console.log(mostExpensiveItemTotal);
-  console.log(mostExpensiveItem);
+  const allTimeExpensiveItemTotal = maxTotalAmount(
+    data,
+    'Purchase Price Per Unit'
+  );
+
+  const allTimeExpensiveItem = maxTotalItem(
+    data,
+    'Purchase Price Per Unit',
+    allTimeExpensiveItemTotal
+  );
+
   return (
     <section className='summary'>
-      <h2 className='summary-heading'>Your Amazon Life...</h2>
-      <p className='summary-details'>
-        Hi {buyerName}, you have quite the spending habit. In {year}, you spent
-        a whopping total of ${maxSpentPerYear}. Your big ticket item was{' '}
-        <em>{mostExpensiveItem[0]['Title']}</em>" for ${mostExpensiveItemTotal}.
-      </p>
-      <p>
-        Overall, you spent a total of ${totalSpent} on amazon products within
-        the last {totalYears} years.
-      </p>
+      <h2 className='summary__heading'>
+        Your <span className='summary__heading--span'>Amazon</span> Life...
+      </h2>
+      <div className='summary__details'>
+        <p className='summary__details--yearly'>
+          Hi {buyerName}, you have quite the spending habit. In {year}, you
+          spent a whopping total of ${maxSpentPerYear}. Your big ticket item was{' '}
+          <em>{mostExpensiveItem[0]['Title']}</em>, for $
+          {mostExpensiveItemTotal}.
+        </p>
+
+        <p className='summary__details--overall'>
+          Overall, you spent a total of ${totalSpent} on amazon products within
+          the last {totalYears} years. Biggest ticket was{' '}
+          <em>{allTimeExpensiveItem[0]['Title']}</em> for $
+          {allTimeExpensiveItemTotal}
+        </p>
+      </div>
     </section>
   );
 };
