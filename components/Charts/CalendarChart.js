@@ -77,15 +77,15 @@ export const CalendarChart = ({ data, year }) => {
         colors={['#7FFFCB', '#FFD391', '#ff9900', '#ff4500', '#DC143C']}
         minValue={1}
         yearSpacing={20}
-        monthBorderColor='#ffffff'
-        dayBorderWidth={2}
-        dayBorderColor='#ffffff'
+        monthBorderColor='#ff9900'
+        dayBorderWidth={1}
+        dayBorderColor='#ff9900'
         legends={[
           {
             anchor: 'center',
             direction: 'row',
-            translateY: 30,
-            translateX: 100,
+            translateY: 70,
+            translateX: -40,
             itemCount: 4,
             itemWidth: 35,
             itemHeight: 36,
