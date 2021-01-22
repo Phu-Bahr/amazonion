@@ -51,6 +51,20 @@ a {
   background-image: url(https://ik.imagekit.io/hawtariyzq/amazonion-background_LkMLGxdRmo.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  scrollbar-width: none;
+  &__copyright {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
+    align-self: flex-end;
+    justify-self: flex-end;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.2rem;
+    padding-bottom: 1rem;
+    padding-right: 4rem;
+  }
 }
 
 .welcome-container {
@@ -233,7 +247,6 @@ a {
 
 //AUTO PREFIX THIS WHEN DONE
 .pie-chart {
-  //height 50vh because percentage breaks nivo
   height: 50vh;
   width: 50vw;
   position: relative;
@@ -242,9 +255,6 @@ a {
   animation: $animation-fade-in;
   transition: all 0.3s;
   &:hover {
-    // -webkit-box-shadow: $quadrant-box-shadow;
-    // box-shadow: $quadrant-box-shadow;
-    // box-shadow: 0 0 3rem 0.5rem rgba(black, 1);
     background-color: rgba($color-white, 1);
   }
 
@@ -292,8 +302,6 @@ a {
 //chart dimensions
 .chart {
   height: 50vh;
-  width: 100%;
-  // width: 49.1vw;
   background: $quadrant-background;
   animation: $animation-fade-in;
   animation-delay: 0.2s;
@@ -301,8 +309,6 @@ a {
   animation-fill-mode: forwards;
   transition: all 0.3s;
   &:hover {
-    // -webkit-box-shadow: $quadrant-box-shadow;
-    // box-shadow: $quadrant-box-shadow;
     background-color: rgba($color-white, 1);
   }
 }
@@ -318,8 +324,6 @@ a {
 
 .calendar {
   height: 40vh;
-  width: 100%;
-  // width: 49.1vw;
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;
   padding: 0 2rem;
@@ -331,8 +335,6 @@ a {
   animation-fill-mode: forwards;
   position: relative;
   &:hover {
-    // -webkit-box-shadow: $quadrant-box-shadow;
-    // box-shadow: $quadrant-box-shadow;
     background-color: rgba($color-white, 1);
   }
 
@@ -360,8 +362,6 @@ a {
   flex-direction: column;
 
   &:hover {
-    // -webkit-box-shadow: $quadrant-box-shadow;
-    // box-shadow: 0 0 3rem 0.5rem rgba(black, 0.3);
     background-color: rgba($color-white, 1);
   }
   &__heading {

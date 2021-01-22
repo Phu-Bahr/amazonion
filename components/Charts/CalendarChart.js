@@ -56,8 +56,13 @@ export const CalendarChart = ({ data, year }) => {
     );
   };
 
+  let scrollbarWidth = window.innerWidth - document.body.clientWidth + 'px';
+
   return (
-    <section className='calendar'>
+    <section
+      className='calendar'
+      style={{ width: `calc(50vw - ${scrollbarWidth})` }}
+    >
       <h2 className='calendar__header'>
         <span>{NumberAnimateNoComma(year)}</span>
         <span> Spending Days</span>
