@@ -43,6 +43,12 @@ const cleanNumber = (num) => {
   return parseFloat(num.replace(/[^0-9.-]+/g, ''));
 };
 
+export const commaSep = (num) => {
+  let num_parts = num.toString().split('.');
+  num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return num_parts.join('.');
+};
+
 //go through array of objects, and filters out and gives me years only. no duplicates
 export const getYearList = (array) => {
   return [...new Set(array.map((element) => element['Order Year']))];
@@ -105,6 +111,12 @@ export const largestItem = (obj) => {
 };
 
 export const NumberAnimate = (props, decimal = 0) => {
+  let formatValue = (value) => commaSep(value.toFixed(decimal));
+  return (
+    <AnimatedNumber value={props} formatValue={formatValue} duration={500} />
+  );
+};
+export const NumberAnimateNoComma = (props, decimal = 0) => {
   let formatValue = (value) => value.toFixed(decimal);
   return (
     <AnimatedNumber value={props} formatValue={formatValue} duration={500} />

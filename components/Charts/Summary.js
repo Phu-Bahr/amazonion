@@ -9,6 +9,7 @@ import {
   countPerItem,
   largestItem,
   NumberAnimate,
+  NumberAnimateNoComma,
 } from '../../util/tools';
 
 export const Summary = ({ data, year }) => {
@@ -123,8 +124,8 @@ export const Summary = ({ data, year }) => {
       <div className='summary__details'>
         <p className='summary__details--yearly'>
           Hi {buyerName}, you have quite the spending habit. In{' '}
-          <span>{NumberAnimate(year)}</span>, you spent a whopping total of{' '}
-          <span>${NumberAnimate(maxSpentPerYear, 2)}</span>. Your big ticket
+          <span>{NumberAnimateNoComma(year)}</span>, you spent a whopping total
+          of <span>${NumberAnimate(maxSpentPerYear, 2)}</span>. Your big ticket
           item was <span>{mostExpensiveItem}</span>, for{' '}
           <span>${NumberAnimate(mostExpensiveItemTotal, 2)}</span>. Your
           cheapest item was <span>{cheapestItem}</span> for{' '}
@@ -137,11 +138,11 @@ export const Summary = ({ data, year }) => {
         <p className='summary__details--overall'>
           Overall, you spent a total of ${totalSpent} on amazon products within
           the last {totalYears} years. The biggest ticket was{' '}
-          <em>{allTimeExpensiveItem}</em> for ${allTimeExpensiveItemTotal}.
-          Cheapest, <em>{allTimeCheapestItem}</em> for $
-          {allTimeCheapestItemTotal}. You saved an average of{' '}
-          {allTimeAverageSaved()}% based on lifetime purchases. You like to buy
-          things on {daysOfWeek[maxDay]}.
+          <em>{allTimeExpensiveItem}</em> for $
+          {commaSep(allTimeExpensiveItemTotal)}. Cheapest,{' '}
+          <em>{allTimeCheapestItem}</em> for ${allTimeCheapestItemTotal}. You
+          saved an average of {allTimeAverageSaved()}% based on lifetime
+          purchases. You like to buy things on {daysOfWeek[maxDay]}.
         </p>
       </div>
     </section>
