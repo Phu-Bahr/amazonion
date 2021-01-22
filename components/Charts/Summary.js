@@ -119,7 +119,7 @@ export const Summary = ({ data, year }) => {
   return (
     <section className='summary'>
       <h2 className='summary__heading'>
-        Your <span className='summary__heading--span'>Amazon</span> Life...
+        ...Your <span className='summary__heading--span'>Amazon</span> Life
       </h2>
       <div className='summary__details'>
         <p className='summary__details--yearly'>
