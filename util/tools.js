@@ -75,11 +75,14 @@ export const maxTotalAmount = (array, columnName) => {
 
 //takes in array, searches through column and returns amount that matches amount argument
 export const itemOfTotal = (array, columnName, amount) => {
-  return array.filter((x) => x[columnName] == amount);
+  return (
+    array.filter((x) => x[columnName] == amount)[0] &&
+    array.filter((x) => x[columnName] == amount)[0]['Title']
+  );
 };
 
 export const minTotalAmount = (array, columnName) => {
-  let filterZero = array.filter((x) => x[columnName] > 0);
+  let filterZero = array && array.filter((x) => x[columnName] > 0);
 
   return commaSep(
     Math.min
@@ -100,18 +103,15 @@ export const sumColumn = (array, columnName) => {
 
 //sums up each type of value returns object of summed up values {value: count}
 export const countPerItem = (array, columnName) => {
-  return (
-    array &&
-    array.reduce((acc, cur) => {
-      acc[cur[columnName]] = acc[cur[columnName]] + 1 || 1;
-      return acc;
-    }, {})
-  );
+  return array.reduce((acc, cur) => {
+    acc[cur[columnName]] = acc[cur[columnName]] + 1 || 1;
+    return acc;
+  }, {});
 };
 
 //finds largest value in single object
 export const largestItem = (obj) => {
-  return Object.keys(obj).reduce((a, b) => (obj[a] > obj[b] ? a : b));
+  return obj && Object.keys(obj).reduce((a, b) => (obj[a] > obj[b] ? a : b));
 };
 
 export const NumberAnimate = (props, decimal = 0) => {

@@ -34,7 +34,7 @@ export const Summary = ({ data, year }) => {
     filteredYear(data, year),
     'Purchase Price Per Unit',
     mostExpensiveItemTotal
-  )[0]['Title'];
+  );
 
   const cheapestItemTotal = minTotalAmount(
     filteredYear(data, year),
@@ -45,7 +45,7 @@ export const Summary = ({ data, year }) => {
     filteredYear(data, year),
     'Purchase Price Per Unit',
     cheapestItemTotal
-  )[0]['Title'];
+  );
 
   const yearlyAverageSaved = () => {
     let listPriceYear = sumColumn(
@@ -84,7 +84,7 @@ export const Summary = ({ data, year }) => {
     data,
     'Purchase Price Per Unit',
     allTimeExpensiveItemTotal
-  )[0]['Title'];
+  );
 
   const allTimeCheapestItemTotal = minTotalAmount(
     data,
@@ -95,7 +95,7 @@ export const Summary = ({ data, year }) => {
     data,
     'Purchase Price Per Unit',
     allTimeCheapestItemTotal
-  )[0]['Title'];
+  );
 
   const allTimeAverageSaved = () => {
     let listPrice = sumColumn(data, 'List Price Per Unit');
