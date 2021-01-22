@@ -68,6 +68,15 @@ export default function Home() {
             <section className='chart-year-buttons'>{displayYearList}</section>
           </>
         )}
+        <h2 className='container__copyright'>
+          <span>
+            Copyright &copy; 2020 by{' '}
+            <a href='https://www.tonyphu.com/' target='_blank'>
+              Tony Phu
+            </a>
+          </span>
+          <span>All rights reserved</span>
+        </h2>
       </main>
       {data.length > 0 && (
         <section className='table-container'>
