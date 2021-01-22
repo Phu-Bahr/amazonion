@@ -63,14 +63,12 @@ export const filteredYear = (array, chosenYear) => {
 
 //takes in array, iterates and find max number based on columnName
 export const maxTotalAmount = (array, columnName) => {
-  return commaSep(
-    Math.max
-      .apply(
-        Math,
-        array.map((element) => element[columnName])
-      )
-      .toFixed(2)
-  );
+  return Math.max
+    .apply(
+      Math,
+      array.map((element) => element[columnName])
+    )
+    .toFixed(2);
 };
 
 //takes in array, searches through column and returns amount that matches amount argument
@@ -84,14 +82,12 @@ export const itemOfTotal = (array, columnName, amount) => {
 export const minTotalAmount = (array, columnName) => {
   let filterZero = array && array.filter((x) => x[columnName] > 0);
 
-  return commaSep(
-    Math.min
-      .apply(
-        Math,
-        filterZero.map((element) => element[columnName])
-      )
-      .toFixed(2)
-  );
+  return Math.min
+    .apply(
+      Math,
+      filterZero.map((element) => element[columnName])
+    )
+    .toFixed(2);
 };
 
 //sums up array of objects returns columnName: totalAmount
@@ -115,6 +111,12 @@ export const largestItem = (obj) => {
 };
 
 export const NumberAnimate = (props, decimal = 0) => {
+  let formatValue = (value) => commaSep(value.toFixed(decimal));
+  return (
+    <AnimatedNumber value={props} formatValue={formatValue} duration={500} />
+  );
+};
+export const NumberAnimateNoComma = (props, decimal = 0) => {
   let formatValue = (value) => value.toFixed(decimal);
   return (
     <AnimatedNumber value={props} formatValue={formatValue} duration={500} />
