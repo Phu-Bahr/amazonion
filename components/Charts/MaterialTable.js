@@ -1,28 +1,34 @@
-import { divide } from 'lodash';
-import Head from 'next/head';
 import MaterialTable from 'material-table';
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { TablePagination } from '@material-ui/core';
 
 export const DataTable = ({ data }) => {
   const columns = [
     { title: 'Table Date', field: 'Table Date' },
-    { title: 'Order ID', field: 'Order ID' },
-    // { title: 'Title', field: 'Title' },
-    { title: 'Category', field: 'Category' },
-    // { title: 'ASIN/ISBN', field: 'ASIN/ISBN' },
-    { title: 'Seller', field: 'Seller' },
-    { title: 'List Price Per Unit', field: 'List Price Per Unit' },
-    { title: 'Purchase Price Per Unit', field: 'Purchase Price Per Unit' },
-    { title: 'Quantity', field: 'Quantity' },
-    { title: 'Payment Instrument Type', field: 'Payment Instrument Type' },
-    { title: 'Ordering Customer Email', field: 'Ordering Customer Email' },
+    {
+      title: 'Title',
+      field: 'Title',
+      cellStyle: { width: '50%' },
+    },
+    { title: 'Category', field: 'Category', cellStyle: { width: '15%' } },
+    { title: 'List Price', field: 'List Price Per Unit' },
+    { title: 'Purchase Price', field: 'Purchase Price Per Unit' },
+    {
+      title: 'Quantity',
+      field: 'Quantity',
+      cellStyle: (rowData) => ({ maxWidth: '10px' }),
+    },
     { title: 'Shipment Date', field: 'Shipment Date' },
-    { title: 'Shipping Address Name', field: 'Shipping Address Name' },
-    { title: 'Shipping Address Street 1', field: 'Shipping Address Street 1' },
-    { title: 'Item Subtotal', field: 'Item Subtotal' },
-    { title: 'Item Subtotal Tax', field: 'Item Subtotal Tax' },
     { title: 'Item Total', field: 'Item Total' },
-    { title: 'Buyer Name', field: 'Buyer Name' },
+    // { title: 'Order ID', field: 'Order ID' },
+    // { title: 'ASIN/ISBN', field: 'ASIN/ISBN' },
+    // { title: 'Seller', field: 'Seller' },
+    // { title: 'Payment Instrument Type', field: 'Payment Instrument Type' },
+    // { title: 'Ordering Customer Email', field: 'Ordering Customer Email' },
+    // { title: 'Shipping Address Name', field: 'Shipping Address Name' },
+    // { title: 'Shipping Address Street 1', field: 'Shipping Address Street 1' },
+    // { title: 'Item Subtotal', field: 'Item Subtotal' },
+    // { title: 'Item Subtotal Tax', field: 'Item Subtotal Tax' },
+    // { title: 'Buyer Name', field: 'Buyer Name' },
   ];
   return (
     <>
@@ -37,14 +43,64 @@ export const DataTable = ({ data }) => {
         title='Amazon Order Purchases'
         data={data}
         columns={columns}
-        options={{ filtering: true, exportButton: true }}
+        options={{
+          filtering: true,
+          exportButton: true,
+          headerStyle: {
+            backgroundColor: '#31c4f3',
+            fontSize: '18px',
+            fontWeight: 'bold',
+            position: 'sticky',
+            top: 0,
+          },
+          pageSizeOptions: [5, 10, 20, 50, 100],
+          maxBodyHeight: '90vh',
+          pageSize: 20,
+        }}
+        components={{
+          Pagination: (props) => (
+            <TablePagination
+              {...props}
+              emptyRowsWhenPaging={false}
+              selectionProps={{
+                style: {
+                  fontSize: 20,
+                },
+              }}
+            />
+          ),
+        }}
         detailPanel={(rowData) => {
           return (
-            <p
-              style={{ fontSize: '20px', padding: '30px', paddingLeft: '65px' }}
+            <div
+              style={{
+                fontSize: '16px',
+                padding: '30px',
+                paddingLeft: '65px',
+                display: 'flex',
+              }}
             >
-              Item : {rowData['Title']}
-            </p>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <span>ASIN : {rowData['ASIN/ISBN']} </span>
+                <span>Seller : {rowData['Seller']} </span>
+                <span>
+                  Payment Type : {rowData['Payment Instrument Type']}{' '}
+                </span>
+                <span>E-Mail : {rowData['Ordering Customer Email']} </span>
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  paddingLeft: '30px',
+                }}
+              >
+                <span>Name : {rowData['Shipping Address Name']} </span>
+                <span>Street : {rowData['Shipping Address Street 1']} </span>
+                <span>City : {rowData['Shipping Address City']} </span>
+                <span>State : {rowData['Shipping Address State']} </span>
+              </div>
+            </div>
           );
         }}
         onRowClick={(event, rowData, togglePanel) => togglePanel()}

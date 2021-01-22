@@ -71,7 +71,7 @@ export const CalendarChart = ({ data, year }) => {
         from={`${year}-01-10`}
         to={`${year}-12-20`}
         maxValue={100}
-        emptyColor='#eeeeee'
+        emptyColor='#ffffff'
         colors={['#7FFFCB', '#FFD391', '#ff9900', '#ff4500', '#DC143C']}
         minValue={1}
         yearSpacing={20}
