@@ -78,7 +78,9 @@ export const MonthlyChart = ({ data, year }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: `Total Spent per Month - Max Spent $${maxSpentPerYear.y} in ${year}`,
+          legend: `Total Spent per Month - Max Spent $${maxSpentPerYear.y.toFixed(
+            2
+          )} in ${year}`,
           legendOffset: 36,
           legendPosition: 'middle',
         }}

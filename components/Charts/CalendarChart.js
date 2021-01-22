@@ -56,7 +56,6 @@ export const CalendarChart = ({ data, year }) => {
     );
   };
 
-  let formatValue = (value) => value.toFixed(0);
   return (
     <section className='calendar'>
       <h2 className='calendar__header'>
