@@ -43,12 +43,6 @@ const cleanNumber = (num) => {
   return parseFloat(num.replace(/[^0-9.-]+/g, ''));
 };
 
-export const commaSep = (num) => {
-  let num_parts = num.toString().split('.');
-  num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  return num_parts.join('.');
-};
-
 //go through array of objects, and filters out and gives me years only. no duplicates
 export const getYearList = (array) => {
   return [...new Set(array.map((element) => element['Order Year']))];
@@ -63,14 +57,12 @@ export const filteredYear = (array, chosenYear) => {
 
 //takes in array, iterates and find max number based on columnName
 export const maxTotalAmount = (array, columnName) => {
-  return commaSep(
-    Math.max
-      .apply(
-        Math,
-        array.map((element) => element[columnName])
-      )
-      .toFixed(2)
-  );
+  return Math.max
+    .apply(
+      Math,
+      array.map((element) => element[columnName])
+    )
+    .toFixed(2);
 };
 
 //takes in array, searches through column and returns amount that matches amount argument
@@ -84,14 +76,12 @@ export const itemOfTotal = (array, columnName, amount) => {
 export const minTotalAmount = (array, columnName) => {
   let filterZero = array && array.filter((x) => x[columnName] > 0);
 
-  return commaSep(
-    Math.min
-      .apply(
-        Math,
-        filterZero.map((element) => element[columnName])
-      )
-      .toFixed(2)
-  );
+  return Math.min
+    .apply(
+      Math,
+      filterZero.map((element) => element[columnName])
+    )
+    .toFixed(2);
 };
 
 //sums up array of objects returns columnName: totalAmount
