@@ -1,6 +1,6 @@
 import { ResponsiveCalendar } from '@nivo/calendar';
 import dayjs from 'dayjs';
-import { NumberAnimate } from '../../util/tools';
+import { NumberAnimateNoComma } from '../../util/tools';
 
 export const CalendarChart = ({ data, year }) => {
   const calendarData =
@@ -60,7 +60,7 @@ export const CalendarChart = ({ data, year }) => {
   return (
     <section className='calendar'>
       <h2 className='calendar__header'>
-        <span>{NumberAnimate(year)}</span>
+        <span>{NumberAnimateNoComma(year)}</span>
         <span> Spending Days</span>
       </h2>
 
