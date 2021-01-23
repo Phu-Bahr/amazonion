@@ -1,5 +1,5 @@
 import MaterialTable from 'material-table';
-import { TablePagination } from '@material-ui/core';
+import Head from 'next/head';
 
 export const DataTable = ({ data }) => {
   const columns = [
@@ -15,7 +15,7 @@ export const DataTable = ({ data }) => {
     {
       title: 'Quantity',
       field: 'Quantity',
-      cellStyle: (rowData) => ({ maxWidth: '10px' }),
+      cellStyle: (rowData) => ({ maxWidth: '1rem' }),
     },
     { title: 'Shipment Date', field: 'Shipment Date' },
     { title: 'Item Total', field: 'Item Total' },
@@ -32,12 +32,12 @@ export const DataTable = ({ data }) => {
   ];
   return (
     <>
-      <head>
+      <Head>
         <link
           rel='stylesheet'
           href='https://fonts.googleapis.com/icon?family=Material+Icons'
         />
-      </head>
+      </Head>
 
       <MaterialTable
         title='Amazon Order Purchases'
@@ -48,7 +48,7 @@ export const DataTable = ({ data }) => {
           exportButton: true,
           headerStyle: {
             backgroundColor: '#31c4f3',
-            fontSize: '18px',
+            fontSize: '1.8rem',
             fontWeight: 'bold',
             position: 'sticky',
             top: 0,
@@ -57,26 +57,13 @@ export const DataTable = ({ data }) => {
           maxBodyHeight: '90vh',
           pageSize: 20,
         }}
-        components={{
-          Pagination: (props) => (
-            <TablePagination
-              {...props}
-              emptyRowsWhenPaging={false}
-              selectionProps={{
-                style: {
-                  fontSize: 20,
-                },
-              }}
-            />
-          ),
-        }}
         detailPanel={(rowData) => {
           return (
             <div
               style={{
-                fontSize: '16px',
-                padding: '30px',
-                paddingLeft: '65px',
+                fontSize: '1.6rem',
+                padding: '3rem',
+                paddingLeft: '6.5rem',
                 display: 'flex',
               }}
             >

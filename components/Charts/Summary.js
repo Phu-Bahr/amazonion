@@ -131,18 +131,19 @@ export const Summary = ({ data, year }) => {
           cheapest item was <span>{cheapestItem}</span> for{' '}
           <span>${NumberAnimate(cheapestItemTotal, 2)}</span>. You saved on
           average <span>{NumberAnimate(yearlyAverageSaved())}%</span> based on
-          List vs Purchase Price purchase. You like to shop on{' '}
-          <span>{daysOfWeek[maxDayYearly]}s</span>.
+          List vs Purchase Price purchase. Based on the data, you like to shop
+          on <span>{daysOfWeek[maxDayYearly]}s</span>.
         </p>
 
         <p className='summary__details--overall'>
           Overall, you spent a total of ${totalSpent} on amazon products within
-          the last {totalYears} years. The biggest ticket was{' '}
+          the last {totalYears} years. Your most expensive purchase was{' '}
           <em>{allTimeExpensiveItem}</em> for $
           {commaSep(allTimeExpensiveItemTotal)}. Cheapest,{' '}
           <em>{allTimeCheapestItem}</em> for ${allTimeCheapestItemTotal}. You
           saved an average of {allTimeAverageSaved()}% based on lifetime
-          purchases. You like to buy things on {daysOfWeek[maxDay]}.
+          purchases. Finally, you're most likely going to purchase something on
+          a {daysOfWeek[maxDay]}.
         </p>
       </div>
     </section>
