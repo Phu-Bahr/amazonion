@@ -49,7 +49,7 @@ export const CalendarChart = ({ data, year }) => {
     if (data.value === undefined) return null;
     return (
       <span
-        style={{ color: 'black', backgroundColor: 'white', padding: '10px' }}
+        style={{ color: 'black', backgroundColor: 'white', padding: '1rem' }}
       >
         {convertedDate} &rarr; <strong>${convertedValue}</strong>
       </span>

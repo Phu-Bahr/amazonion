@@ -43,7 +43,6 @@ export default function Home() {
 
   return (
     <>
-      <html lang='en-US' />
       <Head>
         <title>Amazonion</title>
         <link rel='icon' href='/favicon.ico' />
@@ -71,7 +70,7 @@ export default function Home() {
         <h2 className='container__copyright'>
           <span>
             Copyright &copy; 2020 by{' '}
-            <a href='https://www.tonyphu.com/' target='_blank'>
+            <a href='https://www.tonyphu.com/' target='_blank' rel='noopener'>
               Tony Phu
             </a>
           </span>

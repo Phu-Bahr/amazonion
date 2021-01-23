@@ -16,6 +16,9 @@
 
 html {
   font-size: 62.5%;
+  @media only screen and (max-width: 81.25em) {
+    font-size: 50%;
+  }
 }
 body {
   -webkit-box-sizing: border-box;
@@ -37,6 +40,8 @@ $color-white: #ffffff;
 $quadrant-background: rgba($color-white, 0.8);
 $quadrant-box-shadow: 0 0 3rem 0.5rem rgba($primary-color, 0.8);
 $animation-fade-in: fadeIn 0.3s ease-in;
+$header-text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+  0px 8px 8px rgba(0, 0, 0, 0.1), 0px 18px 18px rgba(0, 0, 0, 0.1);
 
 a {
   color: inherit;
@@ -64,6 +69,8 @@ a {
     font-size: 1.2rem;
     padding-bottom: 1rem;
     padding-right: 4rem;
+  }
+  @media only screen and (max-width: 68.75em) {
   }
 }
 
@@ -123,12 +130,14 @@ a {
     text-align: center;
     padding: 1rem;
     color: $color-white;
+    text-shadow: $header-text-shadow;
   }
   &__mini-header {
     font-size: 3.5rem;
     text-align: center;
     padding: 1rem;
     color: $primary-color;
+    text-shadow: $header-text-shadow;
   }
   &__paragraph {
     font-size: 3rem;
@@ -345,6 +354,9 @@ a {
     left: 50%;
     transform: translateX(-50%);
     font-size: 2.5rem;
+    span {
+      text-shadow: $header-text-shadow;
+    }
   }
 }
 
@@ -367,8 +379,11 @@ a {
   &__heading {
     align-self: center;
     padding-bottom: 1rem;
+    text-shadow: $header-text-shadow;
     &--span {
       color: $primary-color;
+      text-shadow: 0px 4px 3px rgba($primary-color, 0.4),
+        0px 8px 13px rgba($primary-color, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
     }
   }
   &__details {
@@ -379,7 +394,7 @@ a {
     &--yearly {
       span {
         background-color: rgba($primary-color, 0.2);
-        border-radius: 5px;
+        border-radius: 0.5rem;
       }
     }
     &--overall {
