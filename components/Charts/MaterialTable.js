@@ -71,7 +71,7 @@ export const DataTable = ({ data }) => {
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
-                  paddingLeft: '30px',
+                  paddingLeft: '3rem',
                 }}
               >
                 <span>Name : {rowData['Shipping Address Name']} </span>
