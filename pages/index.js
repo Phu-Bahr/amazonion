@@ -59,17 +59,21 @@ export default function Home() {
             <CalendarChart {...props} />
             <Summary {...props} />
             <section className='chart-year-buttons'>{displayYearList}</section>
+            <h2 className='container__copyright'>
+              <span>
+                Copyright &copy; 2020 by{' '}
+                <a
+                  href='https://www.tonyphu.com/'
+                  target='_blank'
+                  rel='noopener'
+                >
+                  Tony Phu
+                </a>
+              </span>
+              <span>All rights reserved</span>
+            </h2>{' '}
           </>
         )}
-        <h2 className='container__copyright'>
-          <span>
-            Copyright &copy; 2020 by{' '}
-            <a href='https://www.tonyphu.com/' target='_blank' rel='noopener'>
-              Tony Phu
-            </a>
-          </span>
-          <span>All rights reserved</span>
-        </h2>
       </main>
       {data.length > 0 && (
         <section className='table-container'>
