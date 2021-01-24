@@ -59,10 +59,15 @@ export const MonthlyChart = ({ data, year }) => {
   // to account for scroll bar bleeding
   let scrollbarWidth = window.innerWidth - document.body.clientWidth + 'px';
 
+  console.log(window.innerWidth);
   return (
     <section
       className='chart'
-      style={{ width: `calc(50vw - ${scrollbarWidth})` }}
+      style={
+        window.innerWidth <= '1100'
+          ? { width: '100vw' }
+          : { width: `calc(50vw - ${scrollbarWidth})` }
+      }
     >
       <ResponsiveLine
         data={yearData}

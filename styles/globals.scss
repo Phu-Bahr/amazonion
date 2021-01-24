@@ -40,8 +40,8 @@ $color-white: #ffffff;
 $quadrant-background: rgba($color-white, 0.8);
 $quadrant-box-shadow: 0 0 3rem 0.5rem rgba($primary-color, 0.8);
 $animation-fade-in: fadeIn 0.3s ease-in;
-$header-text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
-  0px 8px 8px rgba(0, 0, 0, 0.1), 0px 18px 18px rgba(0, 0, 0, 0.1);
+$header-text-shadow: 0px 0.4rem 0.3rem rgba(0, 0, 0, 0.4),
+  0px 0.8rem 0.8rem rgba(0, 0, 0, 0.1), 0px 1.8rem 1.8rem rgba(0, 0, 0, 0.1);
 
 a {
   color: inherit;
@@ -56,7 +56,9 @@ a {
   background-image: url(https://ik.imagekit.io/hawtariyzq/amazonion-background_LkMLGxdRmo.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   scrollbar-width: none;
+
   &__copyright {
     grid-row: 2 / span 1;
     grid-column: 1 / span 2;
@@ -70,7 +72,15 @@ a {
     padding-bottom: 1rem;
     padding-right: 4rem;
   }
+
   @media only screen and (max-width: 68.75em) {
+    grid-template-columns: 1fr 0px;
+    grid-template-rows: 3fr 3fr 2fr 2fr 1fr;
+
+    &__copyright {
+      grid-row: 3 / span 1;
+      grid-column: 1 / span 2;
+    }
   }
 }
 
@@ -79,25 +89,27 @@ a {
   animation: bounce-7 1.4s cubic-bezier(0.28, 0.84, 0.42, 1);
   grid-row: 1 / -1;
   grid-column: 1 / span 2;
-  width: 45%;
+  min-width: 50%;
   align-self: center;
   justify-self: center;
   transition: all 1s;
-}
-
-.welcome-container-out {
-  position: absolute;
-  -webkit-animation: bounce-7-out 1s cubic-bezier(0.28, 0.84, 0.42, 1);
-  animation: bounce-7-out 1s cubic-bezier(0.28, 0.84, 0.42, 1);
   opacity: 1;
-  display: none;
-  z-index: -100;
-  grid-row: 1 / -1;
-  grid-column: 1 / span 2;
-  width: 45%;
-  align-self: center;
-  justify-self: center;
-  transition: all 0.2s;
+  &-out {
+    // -webkit-animation: bounce-7-out 1s cubic-bezier(0.28, 0.84, 0.42, 1);
+    // animation: bounce-7-out 1s cubic-bezier(0.28, 0.84, 0.42, 1);
+    display: none;
+    z-index: -100;
+    grid-row: 1 / -1;
+    grid-column: 1 / span 2;
+    width: 45%;
+    align-self: center;
+    justify-self: center;
+    transition: all 0.2s;
+  }
+
+  @media only screen and (max-width: 42.5em) {
+    padding: 3rem;
+  }
 }
 
 .welcome-modal {
@@ -142,11 +154,11 @@ a {
   &__paragraph {
     font-size: 3rem;
     padding: 1rem;
+    text-align: center;
   }
   &__steps {
     padding: 1rem;
     font-size: 1.6rem;
-
     list-style-type: none;
     &::before {
       content: '\200B'; /* add zero-width space */
@@ -157,6 +169,10 @@ a {
       &-link {
         color: $primary-color;
       }
+    }
+
+    @media only screen and (max-width: 42.5em) {
+      text-align: center;
     }
   }
   &__button-container {
@@ -222,6 +238,7 @@ a {
     background: linear-gradient(to bottom, #f5c07f, #ed9323);
     transition: all 0.2s;
   }
+
   &__button::before {
     content: '';
     position: absolute;
@@ -238,24 +255,34 @@ a {
     transition: all 0.2s;
     z-index: -1;
   }
+
   &__button:hover::before,
   &__button:focus::before {
     opacity: 1;
     border: $color-white solid 1px;
   }
+
   &__button:hover,
   &__button:focus {
     color: $color-white;
     cursor: pointer;
     z-index: 2;
   }
+
   &:hover {
     animation: none;
+  }
+
+  @media only screen and (max-width: 68.75em) {
+    grid-row: 5 / span 1;
+    grid-column: 1 / span 1;
+    height: 10vh;
+    width: 100vw;
   }
 }
 
 //AUTO PREFIX THIS WHEN DONE
-.pie-chart {
+.category-pie-chart {
   height: 50vh;
   width: 50vw;
   position: relative;
@@ -263,6 +290,9 @@ a {
   background-color: $quadrant-background;
   animation: $animation-fade-in;
   transition: all 0.3s;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 2;
+
   &:hover {
     background-color: rgba($color-white, 1);
   }
@@ -296,16 +326,18 @@ a {
       top: 180%;
     }
   }
+
+  @media only screen and (max-width: 68.75em) {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+    height: 30vh;
+    width: 100vw;
+  }
 }
 
 .total-items {
   display: flex;
   justify-content: space-between;
-
-  &__ast {
-  }
-  &__total {
-  }
 }
 
 //chart dimensions
@@ -317,8 +349,17 @@ a {
   opacity: 0;
   animation-fill-mode: forwards;
   transition: all 0.3s;
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+
   &:hover {
     background-color: rgba($color-white, 1);
+  }
+
+  @media only screen and (max-width: 68.75em) {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 1;
+    height: 30vh;
   }
 }
 
@@ -343,6 +384,7 @@ a {
   opacity: 0;
   animation-fill-mode: forwards;
   position: relative;
+
   &:hover {
     background-color: rgba($color-white, 1);
   }
@@ -354,13 +396,33 @@ a {
     left: 50%;
     transform: translateX(-50%);
     font-size: 2.5rem;
+
     span {
       text-shadow: $header-text-shadow;
+    }
+  }
+
+  @media only screen and (max-width: 68.75em) {
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 1;
+    height: 15vh;
+    width: 100vw;
+
+    &__header {
+      position: absolute;
+      top: 75%;
+      left: 25%;
+      font-size: 1.6rem;
+
+      span {
+        text-shadow: none;
+      }
     }
   }
 }
 
 .summary {
+  height: 40vh;
   padding: 2rem;
   background-color: $quadrant-background;
   grid-row: 2 / span 1;
@@ -372,20 +434,24 @@ a {
   transition: all 0.3s;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 
   &:hover {
     background-color: rgba($color-white, 1);
   }
+
   &__heading {
     align-self: center;
     padding-bottom: 1rem;
     text-shadow: $header-text-shadow;
     &--span {
       color: $primary-color;
-      text-shadow: 0px 4px 3px rgba($primary-color, 0.4),
-        0px 8px 13px rgba($primary-color, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
+      text-shadow: 0px 0.4rem 0.3rem rgba($primary-color, 0.4),
+        0px 0.8rem 1.3rem rgba($primary-color, 0.1),
+        0px 1.8rem 2.3rem rgba($primary-color, 0.1);
     }
   }
+
   &__details {
     display: flex;
     flex-grow: 1;
@@ -398,6 +464,23 @@ a {
       }
     }
     &--overall {
+    }
+  }
+
+  @media only screen and (max-width: 68.75em) {
+    grid-row: 4 / span 1;
+    grid-column: 1 / span 1;
+    height: 15vh;
+    width: 100vw;
+
+    &__heading {
+      padding-bottom: 2rem;
+    }
+
+    &__details {
+      &--yearly {
+        padding-bottom: 2rem;
+      }
     }
   }
 }
