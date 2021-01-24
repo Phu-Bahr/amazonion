@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import Head from 'next/head';
 
 import { GA_TRACKING_ID } from '../lib/gtag';
 
@@ -9,6 +8,16 @@ export default class MyDocument extends Document {
       <Html lang='en-US'>
         <Head>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
+
+          <meta
+            name='description'
+            content="Amazon Order's Data Visualizer Application"
+          />
+          <link rel='icon' href='/favicon.ico' />
+          <link
+            rel='stylesheet'
+            href='https://fonts.googleapis.com/icon?family=Material+Icons'
+          />
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}

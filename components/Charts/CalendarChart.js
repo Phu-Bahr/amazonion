@@ -61,7 +61,12 @@ export const CalendarChart = ({ data, year }) => {
   return (
     <section
       className='calendar'
-      style={{ width: `calc(50vw - ${scrollbarWidth})` }}
+      // style={{ width: `calc(50vw - ${scrollbarWidth})` }}
+      style={
+        window.innerWidth <= '1100'
+          ? { width: '100vw' }
+          : { width: `calc(50vw - ${scrollbarWidth})` }
+      }
     >
       <h2 className='calendar__header'>
         <span>{NumberAnimateNoComma(year)}</span>

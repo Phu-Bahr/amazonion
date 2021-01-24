@@ -45,13 +45,7 @@ export default function Home() {
     <>
       <Head>
         <title>Amazonion</title>
-        <link rel='icon' href='/favicon.ico' />
-        <meta
-          name='description'
-          content="Amazon Order's Data Visualizer Application"
-        />
       </Head>
-
       <main className='container'>
         <WelcomeModal
           handleNewData={handleNewData}

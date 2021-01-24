@@ -71,7 +71,7 @@ export const CategoryChart = ({ data, year }) => {
   const totalItems = sumColumn(filteredYear(data, year), 'Quantity');
 
   return (
-    <section className='pie-chart'>
+    <section className='category-pie-chart'>
       <ResponsivePie
         theme={{
           fontSize: '1.6rem',
@@ -94,11 +94,15 @@ export const CategoryChart = ({ data, year }) => {
         sliceLabelsTextColor='#333333'
         enableSliceLabels={false}
       />
-      <div className='pie-chart__details'>
-        <span className='pie-chart__details--header'>Most Popular</span>
-        <span className='pie-chart__details--header'>Category</span>
-        <span className='pie-chart__details--number'>{NumberAnimate(max)}</span>
-        <span className='pie-chart__details--detail'>
+      <div className='category-pie-chart__details'>
+        <span className='category-pie-chart__details--header'>
+          Most Popular
+        </span>
+        <span className='category-pie-chart__details--header'>Category</span>
+        <span className='category-pie-chart__details--number'>
+          {NumberAnimate(max)}
+        </span>
+        <span className='category-pie-chart__details--detail'>
           {popularCategory[0] && popularCategory[0]['id']}
         </span>
       </div>

@@ -1,5 +1,4 @@
 import MaterialTable from 'material-table';
-import Head from 'next/head';
 
 export const DataTable = ({ data }) => {
   const columns = [
@@ -32,13 +31,6 @@ export const DataTable = ({ data }) => {
   ];
   return (
     <>
-      <Head>
-        <link
-          rel='stylesheet'
-          href='https://fonts.googleapis.com/icon?family=Material+Icons'
-        />
-      </Head>
-
       <MaterialTable
         title='Amazon Order Purchases'
         data={data}
