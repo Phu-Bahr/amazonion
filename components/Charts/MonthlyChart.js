@@ -56,19 +56,8 @@ export const MonthlyChart = ({ data, year }) => {
     return Math.ceil(curMaxNum / padding) * padding;
   };
 
-  // to account for scroll bar bleeding
-  let scrollbarWidth = window.innerWidth - document.body.clientWidth + 'px';
-
-  console.log(window.innerWidth);
   return (
-    <section
-      className='chart'
-      style={
-        window.innerWidth <= '1100'
-          ? { width: '100vw' }
-          : { width: `calc(50vw - ${scrollbarWidth})` }
-      }
-    >
+    <section className='chart'>
       <ResponsiveLine
         data={yearData}
         margin={{ top: 50, right: 50, bottom: 50, left: 80 }}
