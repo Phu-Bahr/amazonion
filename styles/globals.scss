@@ -343,7 +343,7 @@ a {
 //chart dimensions
 .chart {
   height: 50vh;
-  width: calc(50vw - 15px);
+  width: calc(50vw - 1.5rem);
   background: $quadrant-background;
   animation: $animation-fade-in;
   animation-delay: 0.2s;
@@ -376,7 +376,7 @@ a {
 
 .calendar {
   height: 40vh;
-  width: calc(50vw - 15px);
+  width: calc(50vw - 1.5rem);
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;
   padding: 0 2rem;
