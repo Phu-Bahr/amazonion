@@ -256,10 +256,16 @@ a {
     z-index: -1;
   }
 
+  &__button:active::before {
+    background: linear-gradient(to bottom, $primary-color, $tertiary-color);
+    transition: all 0.2s;
+  }
+
   &__button:hover::before,
   &__button:focus::before {
     opacity: 1;
     border: $color-white solid 1px;
+    transition: all 0.2s;
   }
 
   &__button:hover,
@@ -267,6 +273,13 @@ a {
     color: $color-white;
     cursor: pointer;
     z-index: 2;
+    transform: scale(1.1);
+    transition: all 0.1s;
+  }
+
+  &__button:active {
+    transform: scale(1);
+    transition: all 0.1s;
   }
 
   &:hover {
@@ -440,13 +453,18 @@ a {
 
   &:hover {
     background-color: rgba($color-white, 1);
+    .summary__heading {
+      transform: scale(1.3);
+    }
   }
 
   &__heading {
     align-self: center;
     padding-bottom: 1rem;
     text-shadow: $header-text-shadow;
+    transition: all 0.2s;
     &--span {
+      transform: scale(1);
       color: $primary-color;
       text-shadow: 0px 0.4rem 0.3rem rgba($primary-color, 0.4),
         0px 0.8rem 1.3rem rgba($primary-color, 0.1),
