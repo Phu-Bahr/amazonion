@@ -36,8 +36,11 @@ export const WelcomeModal = ({ handleNewData, handleYearList, data }) => {
             <strong>Step 3.</strong> Choose file or Drag n Drop file over the
             box below.
           </li>
-          <br></br>
-          <li className='welcome-modal__steps--step'>
+
+          <li
+            className='welcome-modal__steps--step'
+            style={{ paddingTop: '1rem' }}
+          >
             <strong>*</strong> Data is not saved anywhere. It's for your viewing
             only. Enjoy!
           </li>
