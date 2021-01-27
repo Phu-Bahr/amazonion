@@ -118,33 +118,35 @@ export const Summary = ({ data, year }) => {
 
   return (
     <section className='summary'>
-      <h2 className='summary__heading'>
-        ...Your <span className='summary__heading--span'>Amazon</span> Life
-      </h2>
-      <div className='summary__details'>
-        <p className='summary__details--yearly'>
-          Hi {buyerName}, you have quite the spending habit. In{' '}
-          <span>{NumberAnimateNoComma(year)}</span>, you spent a whopping total
-          of <span>${NumberAnimate(maxSpentPerYear, 2)}</span>. Your big ticket
-          item was <span>{mostExpensiveItem}</span>, for{' '}
-          <span>${NumberAnimate(mostExpensiveItemTotal, 2)}</span>. Your
-          cheapest item was <span>{cheapestItem}</span> for{' '}
-          <span>${NumberAnimate(cheapestItemTotal, 2)}</span>. You saved on
-          average <span>{NumberAnimate(yearlyAverageSaved())}%</span> based on
-          List vs Purchase Price purchase. Based on the data, you like to shop
-          on <span>{daysOfWeek[maxDayYearly]}s</span>.
-        </p>
+      <div className='summary__wrapper'>
+        <h2 className='summary__heading'>
+          ...Your <div className='summary__heading--span'>Amazon</div> Life
+        </h2>
+        <div className='summary__details'>
+          <p className='summary__details--yearly'>
+            Hi {buyerName}, you have quite the spending habit. In{' '}
+            <span>{NumberAnimateNoComma(year)}</span>, you spent a whopping
+            total of <span>${NumberAnimate(maxSpentPerYear, 2)}</span>. Your big
+            ticket item was <span>{mostExpensiveItem}</span>, for{' '}
+            <span>${NumberAnimate(mostExpensiveItemTotal, 2)}</span>. Your
+            cheapest item was <span>{cheapestItem}</span> for{' '}
+            <span>${NumberAnimate(cheapestItemTotal, 2)}</span>. You saved on
+            average <span>{NumberAnimate(yearlyAverageSaved())}%</span> based on
+            List vs Purchase Price purchase. Based on the data, you like to shop
+            on <span>{daysOfWeek[maxDayYearly]}s</span>.
+          </p>
 
-        <p className='summary__details--overall'>
-          Overall, you spent a total of ${totalSpent} on amazon products within
-          the last {totalYears} years. Your most expensive purchase was{' '}
-          <em>{allTimeExpensiveItem}</em> for $
-          {commaSep(allTimeExpensiveItemTotal)}. Cheapest,{' '}
-          <em>{allTimeCheapestItem}</em> for ${allTimeCheapestItemTotal}. You
-          saved an average of {allTimeAverageSaved()}% based on lifetime
-          purchases. Finally, you're most likely going to purchase something on
-          a {daysOfWeek[maxDay]}.
-        </p>
+          <p className='summary__details--overall'>
+            Overall, you spent a total of ${totalSpent} on amazon products
+            within the last {totalYears} years. Your most expensive purchase was{' '}
+            <em>{allTimeExpensiveItem}</em> for $
+            {commaSep(allTimeExpensiveItemTotal)}. Cheapest,{' '}
+            <em>{allTimeCheapestItem}</em> for ${allTimeCheapestItemTotal}. You
+            saved an average of {allTimeAverageSaved()}% based on lifetime
+            purchases. Finally, you're most likely going to purchase something
+            on a {daysOfWeek[maxDay]}.
+          </p>
+        </div>
       </div>
     </section>
   );
